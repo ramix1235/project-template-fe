@@ -1,10 +1,22 @@
 import { TFunction } from 'i18next';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { UserLayout } from '#/components/layouts';
+import { IdentityLayout, UserLayout } from '#/components/layouts';
 import { ErrorBoundary, NotFound } from '#/pages/other';
 
 import { MAIN_ROUTES } from './navigation.constants';
+import RouteInterceptor from './RouteInterceptor';
+
+/*
+  Route handle prop together with useMatches hook provides data management tool between route and child components.
+
+  Parameters:
+  - centered?: boolean; - page content position. Default value: false.
+  - title?: (t: TFunction) => React.ReactNode; - title component in the page header section
+  - crumb?: (t: TFunction) => React.ReactNode; - crumb portion for breadcrumbs component in the page header section
+
+  About useMatches: https://reactrouter.com/en/main/hooks/use-matches#usematches
+*/
 
 // TODO: Set your routes
 
@@ -12,7 +24,11 @@ const router = createBrowserRouter([
   {
     path: MAIN_ROUTES.HOME,
     errorElement: <ErrorBoundary />,
-    element: <UserLayout />,
+    element: (
+      <RouteInterceptor authRequired>
+        <UserLayout />
+      </RouteInterceptor>
+    ),
     children: [
       {
         index: true,
@@ -39,6 +55,24 @@ const router = createBrowserRouter([
           return {
             element: <Debug />,
           };
+        },
+      },
+    ],
+  },
+  {
+    errorElement: <ErrorBoundary />,
+    element: (
+      <RouteInterceptor guestRequired>
+        <IdentityLayout />
+      </RouteInterceptor>
+    ),
+    children: [
+      {
+        path: MAIN_ROUTES.LOGIN,
+        async lazy() {
+          const { Login } = await import('#/pages/identity');
+
+          return { element: <Login /> };
         },
       },
     ],

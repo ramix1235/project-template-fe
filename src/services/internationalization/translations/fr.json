@@ -9,7 +9,12 @@
     "errors.404.title": "404 - Page introuvable",
     "errors.500.title": "Il semble que vos données aient provoqué une erreur",
     "errors.common": "Désolé, une erreur inattendue s'est produite",
-    "logo.alt": "Logo",
+    "errors.required": "{{field}} est obligatoire",
+    "common.logo": "Logo",
+    "common.back": "Retour",
+    "common.send": "Envoyer",
+    "common.google": "Google",
+    "common.facebook": "Facebook",
     "aside.title": "Contenu mis à part",
     "navbar.header": "En-tête de la barre de navigation",
     "navbar.footer": "Pied de page de la barre de navigation – toujours en bas",
@@ -25,6 +30,15 @@
     "debug.table.actions.add": "Ajouter un animal de compagnie",
     "debug.table.column.id": "ID",
     "debug.table.column.name": "Nom",
-    "debug.table.column.status": "Statut"
+    "debug.table.column.status": "Statut",
+    "identity.logout": "Déconnexion",
+    "identity.login": "Connexion",
+    "identity.title": "{{type}} avec",
+    "identity.orEmail": "Ou continuez avec l'e-mail",
+    "identity.email": "E-mail",
+    "identity.email.placeholder": "exemple@mail.com",
+    "identity.email.errors.format": "Format d'e-mail invalide",
+    "identity.password": "Mot de passe",
+    "identity.password.placeholder": "Votre mot de passe"
   }
 }

@@ -9,7 +9,12 @@
     "errors.404.title": "404 - Page not found",
     "errors.500.title": "It looks like your data caused an error",
     "errors.common": "Sorry, an unexpected error has occurred",
-    "logo.alt": "Logo",
+    "errors.required": "{{field}} is required",
+    "common.logo": "Logo",
+    "common.back": "Back",
+    "common.send": "Send",
+    "common.google": "Google",
+    "common.facebook": "Facebook",
     "aside.title": "Aside Content",
     "navbar.header": "Navbar header",
     "navbar.footer": "Navbar footer – always at the bottom",
@@ -25,6 +30,15 @@
     "debug.table.actions.add": "Add Pet",
     "debug.table.column.id": "ID",
     "debug.table.column.name": "Name",
-    "debug.table.column.status": "Status"
+    "debug.table.column.status": "Status",
+    "identity.logout": "Logout",
+    "identity.login": "Login",
+    "identity.title": "{{type}} with",
+    "identity.orEmail": "Or continue with email",
+    "identity.email": "Email",
+    "identity.email.placeholder": "example@mail.com",
+    "identity.email.errors.format": "Invalid email format",
+    "identity.password": "Password",
+    "identity.password.placeholder": "Your password"
   }
 }

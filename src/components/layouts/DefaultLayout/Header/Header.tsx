@@ -3,7 +3,10 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '#/services/auth';
 import { MAIN_ROUTES } from '#/services/navigation';
+
+import LogoutButton from './LogoutButton';
 
 import viteLogo from '/vite.svg';
 
@@ -23,6 +26,8 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const { isGuest } = useAuth();
+
   return (
     <AppShell.Header {...rest}>
       <Group h="100%" justify="space-between" px="md">
@@ -33,9 +38,11 @@ const Header: React.FC<HeaderProps> = ({
           <img
             className={clsx({ 'mantine-visible-from-md': !disabledNavbar })}
             src={viteLogo}
-            alt={t('logo.alt')}
+            alt={t('common.logo')}
           />
         </Link>
+
+        {!isGuest && <LogoutButton />}
       </Group>
     </AppShell.Header>
   );
