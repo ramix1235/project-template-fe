@@ -52,9 +52,6 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            handle: {
-              centered: true,
-            },
             async lazy() {
               const { Settings } = await import('#/pages/user');
 

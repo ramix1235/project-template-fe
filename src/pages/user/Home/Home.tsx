@@ -14,6 +14,8 @@ const Home: React.FC = () => {
 
   const [count, setCount] = useState(0);
 
+  const handleCountClick = () => setCount((count) => count + 1);
+
   return (
     <Stack align="center" className={classes.root}>
       <Group>
@@ -26,11 +28,20 @@ const Home: React.FC = () => {
         </a>
       </Group>
 
-      <Title order={1}>{t('home.title')}</Title>
+      <Title order={1} className={classes.title}>
+        <Text
+          inherit
+          variant="gradient"
+          component="span"
+          gradient={{ from: 'var(--vite-brand-color)', to: 'var(--react-brand-color)' }}
+        >
+          {t('home.title')}
+        </Text>
+      </Title>
 
       <Stack p="xl">
         <Group justify="center">
-          <Button onClick={() => setCount((count) => count + 1)}>
+          <Button variant="light" onClick={handleCountClick}>
             {t('home.button.title', { count })}
           </Button>
         </Group>

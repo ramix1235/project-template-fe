@@ -3,7 +3,7 @@
   top: var(--app-shell-header-offset, 0);
   z-index: var(--mantine-z-index-app);
   width: 100%;
-  height: var(--page-header-height, 0);
+  height: var(--page-header-height);
   padding-inline: calc(var(--app-shell-navbar-offset, 0rem) + var(--app-shell-padding))
     calc(var(--app-shell-aside-offset, 0rem) + var(--app-shell-padding));
   background-color: var(--mantine-color-body);

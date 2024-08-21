@@ -5,10 +5,12 @@ import { Provider as StoreProvider } from 'react-redux';
 import { Navigation } from '#/services/navigation';
 import { PermissionsProvider } from '#/services/permissions';
 import { store } from '#/services/store';
-import theme from '#/services/theme';
+import { theme, cssVariablesResolver } from '#/services/theme';
 
 // Connect internationalization files
 import '#/services/internationalization/internationalization';
+
+// Connect styles of packages
 
 /*
   Mantine
@@ -32,7 +34,11 @@ const App: React.FC = () => {
   return (
     <StoreProvider store={store}>
       <PermissionsProvider>
-        <MantineProvider theme={theme} defaultColorScheme="auto">
+        <MantineProvider
+          theme={theme}
+          defaultColorScheme="auto"
+          cssVariablesResolver={cssVariablesResolver}
+        >
           <Notifications position="top-right" />
           <Navigation />
         </MantineProvider>

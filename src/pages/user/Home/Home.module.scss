@@ -1,23 +1,31 @@
-.root {
-  --logo-color-hover: #646cffaa;
-  --logo-color-hover-alt: #61dafbaa;
+.title {
+  font-size: rem(40px);
+
+  @include smaller-than($mantine-breakpoint-md) {
+    font-size: rem(28px);
+  }
 }
 
 .logo {
-  width: 9em;
-  height: 9em;
-  padding: 1.5em;
+  width: rem(144px);
+  height: rem(144px);
+  padding: var(--mantine-spacing-md);
   transition: filter 300ms;
   will-change: filter;
 
   &:hover {
-    filter: drop-shadow(0 0 2em var(--logo-color-hover));
+    filter: drop-shadow(0 0 #{rem(32px)} var(--vite-brand-color));
+  }
+
+  @include smaller-than($mantine-breakpoint-md) {
+    width: rem(108px);
+    height: rem(108px);
   }
 }
 
 .react {
   &:hover {
-    filter: drop-shadow(0 0 2em var(--logo-color-hover-alt));
+    filter: drop-shadow(0 0 #{rem(32px)} var(--react-brand-color));
   }
 }
 

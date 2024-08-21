@@ -6,6 +6,8 @@ import { authReducer } from '#/services/auth';
 
 const environments = import.meta.env;
 
+// You may want to show a generic toast notification for any async error: https://redux-toolkit.js.org/rtk-query/usage/error-handling#handling-errors-at-a-macro-level
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,

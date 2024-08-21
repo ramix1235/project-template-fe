@@ -75,22 +75,24 @@ const Debug: React.FC = () => {
   return (
     <PageLoader loading={isPetsLoading}>
       <Stack gap="xl">
-        <Stack>
-          <Title order={6} c="dimmed">
-            {t('debug.theming')}
-          </Title>
-          <ThemeSelect />
+        <Group justify="center">
+          <Stack maw={360}>
+            <Title order={6} c="dimmed">
+              {t('debug.theming')}
+            </Title>
+            <ThemeSelect />
 
-          <Title order={6} c="dimmed">
-            {t('debug.localization')}
-          </Title>
-          <LocaleSelect />
+            <Title order={6} c="dimmed">
+              {t('debug.localization')}
+            </Title>
+            <LocaleSelect />
 
-          <Title order={6} c="dimmed">
-            {t('debug.permissions')}
-          </Title>
-          <PermissionsMultiSelect />
-        </Stack>
+            <Title order={6} c="dimmed">
+              {t('debug.permissions')}
+            </Title>
+            <PermissionsMultiSelect />
+          </Stack>
+        </Group>
 
         <Stack mt="xl">
           <Text ta="center" size="xl">
