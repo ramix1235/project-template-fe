@@ -24,9 +24,13 @@ export const authSlice = createSlice({
 
       state.authAccount = getAuthAccount();
     },
+    // TODO: It was created to debug permissions
+    temporaryChangePermissions: (state, action: PayloadAction<AuthAccount['permissions']>) => {
+      state.authAccount.permissions = action.payload;
+    },
   },
 });
 
-export const { setAuth, clearAuth } = authSlice.actions;
+export const { setAuth, clearAuth, temporaryChangePermissions } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

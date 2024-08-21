@@ -2,6 +2,7 @@ import { MantineProvider } from '@mantine/core';
 import { Provider as StoreProvider } from 'react-redux';
 
 import { Navigation } from '#/services/navigation';
+import { PermissionsProvider } from '#/services/permissions';
 import { store } from '#/services/store';
 import theme from '#/services/theme';
 
@@ -29,9 +30,11 @@ console.info('API: ', environments.VITE_API_URL);
 const App: React.FC = () => {
   return (
     <StoreProvider store={store}>
-      <MantineProvider theme={theme} defaultColorScheme="auto">
-        <Navigation />
-      </MantineProvider>
+      <PermissionsProvider>
+        <MantineProvider theme={theme} defaultColorScheme="auto">
+          <Navigation />
+        </MantineProvider>
+      </PermissionsProvider>
     </StoreProvider>
   );
 };

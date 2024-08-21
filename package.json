@@ -18,6 +18,8 @@
     "codegen:openapi": "rtk-query-codegen-openapi openapi-config.ts && prettier \"src/services/api/*/*.api.ts\" --write"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.1",
+    "@casl/react": "^4.0.0",
     "@mantine/core": "^7.12.1",
     "@mantine/form": "^7.12.1",
     "@mantine/hooks": "^7.12.1",

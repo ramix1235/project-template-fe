@@ -53,7 +53,11 @@ const router = createBrowserRouter([
           const { Debug } = await import('#/pages/user');
 
           return {
-            element: <Debug />,
+            element: (
+              <RouteInterceptor permissions={['user:debug']}>
+                <Debug />
+              </RouteInterceptor>
+            ),
           };
         },
       },

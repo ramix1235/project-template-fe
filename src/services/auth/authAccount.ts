@@ -3,11 +3,12 @@ import { getItem, removeItem, setItem } from '#/services/webStorage';
 // TODO: Set your Auth Account interface based on auth data
 
 export interface AuthAccount {
+  permissions: string[];
   token?: string | null;
 }
 
 const guestAuthAccount: AuthAccount = {
-  token: null,
+  permissions: [],
 };
 
 export const WEB_STORAGE_ACCOUNT = 'authAccount';

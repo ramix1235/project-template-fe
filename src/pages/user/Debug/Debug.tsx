@@ -17,6 +17,8 @@ import {
 import { showErrorNotification } from '#/services/notifications';
 import { getPageTotal, paginate } from '#/services/pagination';
 
+import PermissionsMultiSelect from './PermissionsMultiSelect';
+
 // TODO: It was created to debug components, API, permissions, etc.
 
 const defaultPets: Pet[] = [];
@@ -83,6 +85,11 @@ const Debug: React.FC = () => {
             {t('debug.localization')}
           </Title>
           <LocaleSelect />
+
+          <Title order={6} c="dimmed">
+            {t('debug.permissions')}
+          </Title>
+          <PermissionsMultiSelect />
         </Stack>
 
         <Stack mt="xl">
