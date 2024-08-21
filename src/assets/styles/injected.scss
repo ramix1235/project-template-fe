@@ -1,0 +1,18 @@
+/*
+  This option can be used to inject extra code for each style content.
+
+  Use src/assets/styles/global.scss if you want to include global project styles and not just variables,
+  because those styles will be duplicated in the final bundle.
+*/
+
+@mixin light {
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
