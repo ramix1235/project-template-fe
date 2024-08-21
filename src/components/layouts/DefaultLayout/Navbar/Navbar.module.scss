@@ -1,0 +1,11 @@
+.header {
+  &[data-with-border] {
+    border-bottom: 1px solid var(--app-shell-border-color);
+  }
+}
+
+.footer {
+  &[data-with-border] {
+    border-top: 1px solid var(--app-shell-border-color);
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "translation": {
+    "locale.en": "English",
+    "locale.fr": "Français",
+    "theme.light": "Light",
+    "theme.dark": "Dark",
+    "theme.auto": "Auto",
+    "errors.title": "Oops!",
+    "errors.404.title": "404 - Page not found",
+    "errors.500.title": "It looks like your data caused an error",
+    "errors.common": "Sorry, an unexpected error has occurred",
+    "logo.alt": "Logo",
+    "aside.title": "Aside Content",
+    "navbar.header": "Navbar header",
+    "navbar.footer": "Navbar footer – always at the bottom",
+    "home": "Home",
+    "home.title": "Vite + React",
+    "home.button.title": "count is {{count}}",
+    "home.edit": "Edit <Code>src/pages/user/Home</Code> and save to test HMR",
+    "home.dimmed": "Click on the <Anchor href=\"https://vitejs.dev\">Vite</Anchor> and <Anchor href=\"https://react.dev\">React</Anchor> logos to learn more"
+  }
+}

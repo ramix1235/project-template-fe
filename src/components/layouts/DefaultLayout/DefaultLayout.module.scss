@@ -1,0 +1,38 @@
+.root {
+  // Missed part in the Mantine - https://mantine.dev/core/app-shell/#disabled-prop
+  &[data-disabled] {
+    --app-shell-footer-offset: 0rem !important;
+    --app-shell-aside-offset: 0rem !important;
+
+    // Added page header offset
+    --page-header-offset: 0rem !important;
+  }
+}
+
+.main {
+  // Added page header offset
+  // prettier-ignore
+  padding-top: calc(
+    var(--app-shell-header-offset, 0rem) + var(--app-shell-padding) + var(--page-header-offset, 0rem)
+  );
+}
+
+.disabled_header {
+  --app-shell-header-offset: 0rem !important;
+}
+
+.disabled_page_header {
+  --page-header-offset: 0rem !important;
+}
+
+.disabled_navbar {
+  --app-shell-navbar-offset: 0rem !important;
+}
+
+.disabled_aside {
+  --app-shell-aside-offset: 0rem !important;
+}
+
+.disabled_footer {
+  --app-shell-footer-offset: 0rem !important;
+}

@@ -1,0 +1,22 @@
+{
+  "translation": {
+    "locale.en": "English",
+    "locale.fr": "Français",
+    "theme.light": "Lumière",
+    "theme.dark": "Sombre",
+    "theme.auto": "Auto",
+    "errors.title": "Oups !",
+    "errors.404.title": "404 - Page introuvable",
+    "errors.500.title": "Il semble que vos données aient provoqué une erreur",
+    "errors.common": "Désolé, une erreur inattendue s'est produite",
+    "logo.alt": "Logo",
+    "aside.title": "Contenu mis à part",
+    "navbar.header": "En-tête de la barre de navigation",
+    "navbar.footer": "Pied de page de la barre de navigation – toujours en bas",
+    "home": "Maison",
+    "home.title": "Vite + Réagir",
+    "home.button.title": "le nombre est de {{count}}",
+    "home.edit": "Modifiez <Code>src/pages/user/Home</Code> et enregistrez pour tester HMR",
+    "home.dimmed": "Cliquez sur <Anchor href=\"https://vitejs.dev\">Vite</Anchor> et <Anchor href=\"https://react.dev\">React</Anchor> logos pour en savoir plus"
+  }
+}

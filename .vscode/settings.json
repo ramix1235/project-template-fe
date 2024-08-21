@@ -4,5 +4,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit" // Required to run import sorting together with formatting
   },
-  "cssVariables.lookupFiles": ["**/*.css", "**/*.scss"]
+  "cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "node_modules/@mantine/core/styles.css"]
 }

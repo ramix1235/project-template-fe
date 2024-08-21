@@ -1,6 +1,11 @@
+.root {
+  --logo-color-hover: #646cffaa;
+  --logo-color-hover-alt: #61dafbaa;
+}
+
 .logo {
-  width: 6em;
-  height: 6em;
+  width: 9em;
+  height: 9em;
   padding: 1.5em;
   transition: filter 300ms;
   will-change: filter;
@@ -14,14 +19,6 @@
   &:hover {
     filter: drop-shadow(0 0 2em var(--logo-color-hover-alt));
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read_the_docs {
-  color: var(--text-dimmed-color);
 }
 
 @media (prefers-reduced-motion: no-preference) {
