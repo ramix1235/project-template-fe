@@ -3,6 +3,7 @@
 export const MAIN_ROUTES = {
   // Identity
   LOGIN: '/login',
+  REGISTER: '/signup',
 
   // User
   HOME: '/',

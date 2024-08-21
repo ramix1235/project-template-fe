@@ -12,11 +12,11 @@ const getLoginSchema = (t: TFunction) =>
   z.object({
     email: z
       .string()
-      .email({ message: t('identity.email.errors.format') })
-      .min(REQUIRED_LENGTH, { message: t('errors.required', { field: t('identity.email') }) }),
+      .email({ message: t('user.email.errors.format') })
+      .min(REQUIRED_LENGTH, { message: t('errors.required', { field: t('user.email') }) }),
     password: z
       .string()
-      .min(REQUIRED_LENGTH, { message: t('errors.required', { field: t('identity.password') }) }),
+      .min(REQUIRED_LENGTH, { message: t('errors.required', { field: t('user.password') }) }),
   });
 
 export const getSchema = (t: TFunction) => {

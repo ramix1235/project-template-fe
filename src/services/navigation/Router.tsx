@@ -79,6 +79,14 @@ const router = createBrowserRouter([
           return { element: <Login /> };
         },
       },
+      {
+        path: MAIN_ROUTES.REGISTER,
+        async lazy() {
+          const { Register } = await import('#/pages/identity');
+
+          return { element: <Register /> };
+        },
+      },
     ],
   },
   {

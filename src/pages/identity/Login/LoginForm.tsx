@@ -1,13 +1,14 @@
-import { PasswordInput, Stack, TextInput } from '@mantine/core';
+import { Anchor, Group, PasswordInput, Stack, TextInput } from '@mantine/core';
 import { FormErrors, useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
 import { LoginUserApiArg, useLazyLoginUserQuery } from '#/services/api/user';
 import { AuthAccount, setAuth } from '#/services/auth';
 import { getDefaultFormConfig } from '#/services/forms';
 import { mockedAccount } from '#/services/mock';
+import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification } from '#/services/notifications';
 import { useAppDispatch } from '#/services/store';
 
@@ -71,14 +72,14 @@ const LoginForm: React.FC = () => {
     <form onSubmit={form.onSubmit(handleSubmit, handleValidationFailure)}>
       <Stack>
         <TextInput
-          label={t('identity.email')}
-          placeholder={t('identity.email.placeholder')}
+          label={t('user.email')}
+          placeholder={t('user.email.placeholder')}
           {...form.getInputProps('email')}
         />
 
         <PasswordInput
-          label={t('identity.password')}
-          placeholder={t('identity.password.placeholder')}
+          label={t('user.password')}
+          placeholder={t('user.password.placeholder')}
           {...form.getInputProps('password')}
         />
       </Stack>
@@ -86,6 +87,12 @@ const LoginForm: React.FC = () => {
       <SubmitButton fullWidth mt="xl" loading={isLoginLoading}>
         {t('identity.login')}
       </SubmitButton>
+
+      <Group mt="xl" justify="center">
+        <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.REGISTER}>
+          {t('identity.login.link.register')}
+        </Anchor>
+      </Group>
     </form>
   );
 };
