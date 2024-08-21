@@ -17,6 +17,14 @@
     "home.title": "Vite + React",
     "home.button.title": "count is {{count}}",
     "home.edit": "Edit <Code>src/pages/user/Home</Code> and save to test HMR",
-    "home.dimmed": "Click on the <Anchor href=\"https://vitejs.dev\">Vite</Anchor> and <Anchor href=\"https://react.dev\">React</Anchor> logos to learn more"
+    "home.dimmed": "Click on the <Anchor href=\"https://vitejs.dev\">Vite</Anchor> and <Anchor href=\"https://react.dev\">React</Anchor> logos to learn more",
+    "debug": "Debug",
+    "debug.theming": "Theming",
+    "debug.localization": "Localization",
+    "debug.table.title": "RTK Query <Anchor href=\"https://petstore3.swagger.io\">Petstore API</Anchor> Playground",
+    "debug.table.actions.add": "Add Pet",
+    "debug.table.column.id": "ID",
+    "debug.table.column.name": "Name",
+    "debug.table.column.status": "Status"
   }
 }

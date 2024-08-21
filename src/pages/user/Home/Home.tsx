@@ -51,7 +51,7 @@ const Home: React.FC = () => {
           t={t}
           i18nKey="home.dimmed"
           components={{
-            Anchor: <Anchor target="_blank" rel="noreferrer" />,
+            Anchor: <Anchor target="_blank" />,
           }}
         />
       </Text>

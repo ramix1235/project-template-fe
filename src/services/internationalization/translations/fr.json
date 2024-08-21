@@ -17,6 +17,14 @@
     "home.title": "Vite + Réagir",
     "home.button.title": "le nombre est de {{count}}",
     "home.edit": "Modifiez <Code>src/pages/user/Home</Code> et enregistrez pour tester HMR",
-    "home.dimmed": "Cliquez sur <Anchor href=\"https://vitejs.dev\">Vite</Anchor> et <Anchor href=\"https://react.dev\">React</Anchor> logos pour en savoir plus"
+    "home.dimmed": "Cliquez sur <Anchor href=\"https://vitejs.dev\">Vite</Anchor> et <Anchor href=\"https://react.dev\">React</Anchor> logos pour en savoir plus",
+    "debug": "Débogage",
+    "debug.theming": "Thème",
+    "debug.localization": "Localisation",
+    "debug.table.title": "Requête RTK <Anchor href=\"https://petstore3.swagger.io\">API Petstore</Anchor> Playground",
+    "debug.table.actions.add": "Ajouter un animal de compagnie",
+    "debug.table.column.id": "ID",
+    "debug.table.column.name": "Nom",
+    "debug.table.column.status": "Statut"
   }
 }

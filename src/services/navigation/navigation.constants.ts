@@ -2,4 +2,5 @@
 
 export const MAIN_ROUTES = {
   HOME: '/',
+  DEBUG: '/debug',
 };

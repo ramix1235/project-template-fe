@@ -20,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ withBorder = true, ...rest }) => {
 
       <AppShell.Section component={ScrollArea} px="md" grow>
         <NavigationButton to={MAIN_ROUTES.HOME}>{t('home')}</NavigationButton>
+        <NavigationButton to={MAIN_ROUTES.DEBUG}>{t('debug')}</NavigationButton>
       </AppShell.Section>
 
       <Text p="md" className={classes.footer} mod={{ 'data-with-border': withBorder }}>

@@ -27,6 +27,20 @@ const router = createBrowserRouter([
           return { element: <Home /> };
         },
       },
+      {
+        path: MAIN_ROUTES.DEBUG,
+        handle: {
+          title: (t: TFunction) => t('debug'),
+          crumb: (t: TFunction) => t('debug'),
+        },
+        async lazy() {
+          const { Debug } = await import('#/pages/user');
+
+          return {
+            element: <Debug />,
+          };
+        },
+      },
     ],
   },
   {

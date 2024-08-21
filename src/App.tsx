@@ -15,6 +15,8 @@ import '#/services/internationalization/internationalization';
   About layers: https://mantine.dev/styles/mantine-styles/#css-layers
 */
 import '@mantine/core/styles.layer.css';
+import '@mantine/notifications/styles.css';
+import 'mantine-datatable/styles.layer.css';
 
 // Includes global project styles
 import '#/assets/styles/global.scss';
