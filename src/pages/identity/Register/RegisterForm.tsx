@@ -102,9 +102,15 @@ const RegisterForm: React.FC = () => {
         {...form.getInputProps('terms', { type: 'checkbox' })}
       />
 
-      <SubmitButton fullWidth mt="xl" loading={isRegisterLoading}>
-        {t('identity.register')}
-      </SubmitButton>
+      <Stack mt="xl" gap="xs">
+        <Group>
+          <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
+            {t('identity.link.forgotPassword')}
+          </Anchor>
+        </Group>
+
+        <SubmitButton loading={isRegisterLoading}>{t('identity.register')}</SubmitButton>
+      </Stack>
 
       <Group mt="xl" justify="center">
         <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.LOGIN}>

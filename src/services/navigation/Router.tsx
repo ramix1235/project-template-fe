@@ -87,7 +87,31 @@ const router = createBrowserRouter([
           return { element: <Register /> };
         },
       },
+      {
+        path: MAIN_ROUTES.RESET_PASSWORD,
+        async lazy() {
+          const { ResetPassword } = await import('#/pages/identity');
+
+          return { element: <ResetPassword /> };
+        },
+      },
+      {
+        path: MAIN_ROUTES.SETUP_PASSWORD,
+        async lazy() {
+          const { SetupPassword } = await import('#/pages/identity');
+
+          return { element: <SetupPassword /> };
+        },
+      },
     ],
+  },
+  {
+    path: MAIN_ROUTES.ACTION_REDIRECT,
+    async lazy() {
+      const { ActionRedirect } = await import('#/pages/other');
+
+      return { element: <ActionRedirect /> };
+    },
   },
   {
     path: '*',

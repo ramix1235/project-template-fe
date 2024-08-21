@@ -2,9 +2,11 @@
   "translation": {
     "locale.en": "English",
     "locale.fr": "Français",
+
     "theme.light": "Lumière",
     "theme.dark": "Sombre",
     "theme.auto": "Auto",
+
     "errors.title": "Oups !",
     "errors.404.title": "404 - Page introuvable",
     "errors.500.title": "Il semble que vos données aient provoqué une erreur",
@@ -12,19 +14,24 @@
     "errors.required": "{{field}} est obligatoire",
     "errors.permission": "Accès refusé",
     "errors.max": "{{n}}/{{y}} caractères - Limite dépassée",
+
     "common.logo": "Logo",
     "common.back": "Retour",
     "common.send": "Envoyer",
     "common.google": "Google",
     "common.facebook": "Facebook",
+
     "aside.title": "Contenu mis à part",
+
     "navbar.header": "En-tête de la barre de navigation",
     "navbar.footer": "Pied de page de la barre de navigation – toujours en bas",
+
     "home": "Maison",
     "home.title": "Vite + Réagir",
     "home.button.title": "le nombre est de {{count}}",
     "home.edit": "Modifiez <Code>src/pages/user/Home</Code> et enregistrez pour tester HMR",
     "home.dimmed": "Cliquez sur <Anchor href=\"https://vitejs.dev\">Vite</Anchor> et <Anchor href=\"https://react.dev\">React</Anchor> logos pour en savoir plus",
+
     "debug": "Débogage",
     "debug.theming": "Thème",
     "debug.localization": "Localisation",
@@ -34,7 +41,9 @@
     "debug.table.column.id": "ID",
     "debug.table.column.name": "Nom",
     "debug.table.column.status": "Statut",
+
     "identity.logout": "Déconnexion",
+    "identity.link.forgotPassword": "Mot de passe oublié ?",
     "identity.login": "Connexion",
     "identity.login.link.register": "Vous n'avez pas de compte ? Inscrivez-vous",
     "identity.title": "{{type}} avec",
@@ -44,6 +53,20 @@
     "identity.register.terms": "J'accepte les <Anchor>termes et conditions</Anchor>",
     "identity.register.terms.errors.required": "Les termes et conditions doivent être acceptés",
     "identity.register.notification.success": "Merci pour votre inscription. Veuillez vérifier votre courrier électronique pour confirmer votre compte.",
+    "identity.resetPassword": "Réinitialiser le mot de passe",
+    "identity.resetPassword.notification.success": "Merci d'avoir fourni votre email. Si un compte est associé à cet email, nous vous enverrons des instructions de réinitialisation du mot de passe.",
+    "identity.setupPassword": "Configuration du mot de passe",
+    "identity.setupPassword.confirmPassword": "Confirmer le mot de passe",
+    "identity.setupPassword.confirmPassword.placeholder": "Votre mot de passe de confirmation",
+    "identity.setupPassword.confirmPassword.errors.match": "Les mots de passe ne correspondent pas",
+    "identity.setupPassword.currentPassword": "Mot de passe actuel",
+    "identity.setupPassword.currentPassword.placeholder": "Votre mot de passe actuel",
+    "identity.setupPassword.set.notification.success": "Votre mot de passe a été défini avec succès. Vous pouvez maintenant vous connecter en utilisant votre email et votre mot de passe.",
+    "identity.setupPassword.reset.notification.success": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter en utilisant votre nouveau mot de passe.",
+    "identity.setupPassword.change.notification.success": "Votre mot de passe a été modifié avec succès",
+    "identity.emailConfirm.activate.notification.success": "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter en utilisant votre email et votre mot de passe.",
+    "identity.emailConfirm.update.notification.success": "Votre adresse e-mail a été mise à jour avec succès. Veuillez vous connecter en utilisant votre nouvelle adresse e-mail.",
+
     "user.email": "E-mail",
     "user.email.placeholder": "exemple@mail.com",
     "user.email.errors.format": "Format d'e-mail invalide",

@@ -84,9 +84,15 @@ const LoginForm: React.FC = () => {
         />
       </Stack>
 
-      <SubmitButton fullWidth mt="xl" loading={isLoginLoading}>
-        {t('identity.login')}
-      </SubmitButton>
+      <Stack mt="xl" gap="xs">
+        <Group>
+          <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
+            {t('identity.link.forgotPassword')}
+          </Anchor>
+        </Group>
+
+        <SubmitButton loading={isLoginLoading}>{t('identity.login')}</SubmitButton>
+      </Stack>
 
       <Group mt="xl" justify="center">
         <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.REGISTER}>
