@@ -4,7 +4,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { IdentityLayout, UserLayout } from '#/components/layouts';
 import { ErrorBoundary, NotFound } from '#/pages/other';
 
-import { MAIN_ROUTES } from './navigation.constants';
+import { MAIN_ROUTES, SETTINGS_ROUTES } from './navigation.constants';
 import RouteInterceptor from './RouteInterceptor';
 
 /*
@@ -42,6 +42,50 @@ const router = createBrowserRouter([
 
           return { element: <Home /> };
         },
+      },
+      {
+        path: MAIN_ROUTES.SETTINGS,
+        handle: {
+          title: (t: TFunction) => t('settings'),
+          crumb: (t: TFunction) => t('settings'),
+        },
+        children: [
+          {
+            index: true,
+            handle: {
+              centered: true,
+            },
+            async lazy() {
+              const { Settings } = await import('#/pages/user');
+
+              return { element: <Settings /> };
+            },
+          },
+          {
+            path: SETTINGS_ROUTES.CHANGE_EMAIL,
+            handle: {
+              title: (t: TFunction) => t('settings.changeEmail'),
+              crumb: (t: TFunction) => t('settings.changeEmail'),
+            },
+            async lazy() {
+              const { ChangeEmail } = await import('#/pages/user');
+
+              return { element: <ChangeEmail /> };
+            },
+          },
+          {
+            path: SETTINGS_ROUTES.CHANGE_PASSWORD,
+            handle: {
+              title: (t: TFunction) => t('settings.changePassword'),
+              crumb: (t: TFunction) => t('settings.changePassword'),
+            },
+            async lazy() {
+              const { ChangePassword } = await import('#/pages/user');
+
+              return { element: <ChangePassword /> };
+            },
+          },
+        ],
       },
       {
         path: MAIN_ROUTES.DEBUG,

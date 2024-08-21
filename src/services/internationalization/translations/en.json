@@ -32,6 +32,12 @@
     "home.edit": "Edit <Code>src/pages/user/Home</Code> and save to test HMR",
     "home.dimmed": "Click on the <Anchor href=\"https://vitejs.dev\">Vite</Anchor> and <Anchor href=\"https://react.dev\">React</Anchor> logos to learn more",
 
+    "settings": "Settings",
+    "settings.title": "Settings content",
+    "settings.changeEmail": "Change Email",
+    "settings.changeEmail.notification.success": "A confirmation email has been sent to your new email address. Please check your email to confirm the change.",
+    "settings.changePassword": "Change Password",
+
     "debug": "Debug",
     "debug.theming": "Theming",
     "debug.localization": "Localization",

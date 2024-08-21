@@ -21,6 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ withBorder = true, ...rest }) => {
 
       <AppShell.Section component={ScrollArea} px="md" grow>
         <NavigationButton to={MAIN_ROUTES.HOME}>{t('home')}</NavigationButton>
+        <NavigationButton to={MAIN_ROUTES.SETTINGS}>{t('settings')}</NavigationButton>
         <Can I="debug" a="user">
           <NavigationButton to={MAIN_ROUTES.DEBUG}>{t('debug')}</NavigationButton>
         </Can>
