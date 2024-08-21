@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { Provider as StoreProvider } from 'react-redux';
 
 import { Navigation } from '#/services/navigation';
@@ -32,6 +33,7 @@ const App: React.FC = () => {
     <StoreProvider store={store}>
       <PermissionsProvider>
         <MantineProvider theme={theme} defaultColorScheme="auto">
+          <Notifications position="top-right" />
           <Navigation />
         </MantineProvider>
       </PermissionsProvider>
