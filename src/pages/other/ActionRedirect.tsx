@@ -14,7 +14,7 @@ import { showErrorNotification, showSuccessNotification } from '#/services/notif
   Handled cases:
 
   1. Account activation:
-  - call makeAction endpoint
+  - call confirmEmail endpoint
   - show success/error notification about ACTIVATE account action
   - logout if user authorized
   - redirect to the Login page
@@ -29,7 +29,7 @@ import { showErrorNotification, showSuccessNotification } from '#/services/notif
   link: /action/password-setup?code={code}&email={email}
 
   3. Email updating:
-  - call makeAction endpoint
+  - call confirmEmail endpoint
   - show success/error notification about UPDATE email action
   - logout if user authorized
   - redirect to the Login page
@@ -47,7 +47,7 @@ import { showErrorNotification, showSuccessNotification } from '#/services/notif
 const ActionRedirect: React.FC = () => {
   const isActionCalled = useRef(false);
 
-  const [makeAction] = useCreateUserMutation(); // TODO: Set your hook
+  const [confirmEmail] = useCreateUserMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ const ActionRedirect: React.FC = () => {
       const code = searchParams.get('code') ?? '';
       const type = searchParams.get('type') ?? '';
 
-      // Set your payload
+      // TODO: Set your payload
       const actionPayload: CreateUserApiArg = {
         user: {
           username: code,
@@ -75,15 +75,15 @@ const ActionRedirect: React.FC = () => {
       };
 
       if (isEmailConfirmRedirect) {
-        makeAction(actionPayload)
+        confirmEmail(actionPayload)
           .unwrap()
           .then(() => {
             const isEmailUpdate = type === 'update';
-            const message = isEmailUpdate
+            const successNotificationMessage = isEmailUpdate
               ? t('identity.emailConfirm.update.notification.success')
               : t('identity.emailConfirm.activate.notification.success');
 
-            showSuccessNotification({ message });
+            showSuccessNotification({ message: successNotificationMessage });
           })
           .catch((error: unknown) => showErrorNotification(error))
           .finally(() => {
@@ -118,7 +118,7 @@ const ActionRedirect: React.FC = () => {
     isPasswordSetupRedirect,
     navigate,
     logout,
-    makeAction,
+    confirmEmail,
   ]);
 
   return <Splash />;

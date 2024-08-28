@@ -67,7 +67,7 @@
     "identity.setupPassword.confirmPassword.errors.match": "Les mots de passe ne correspondent pas",
     "identity.setupPassword.currentPassword": "Mot de passe actuel",
     "identity.setupPassword.currentPassword.placeholder": "Votre mot de passe actuel",
-    "identity.setupPassword.set.notification.success": "Votre mot de passe a été défini avec succès. Vous pouvez maintenant vous connecter en utilisant votre email et votre mot de passe.",
+    "identity.setupPassword.setup.notification.success": "Votre mot de passe a été défini avec succès. Vous pouvez maintenant vous connecter en utilisant votre email et votre mot de passe.",
     "identity.setupPassword.reset.notification.success": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter en utilisant votre nouveau mot de passe.",
     "identity.setupPassword.change.notification.success": "Votre mot de passe a été modifié avec succès",
     "identity.emailConfirm.activate.notification.success": "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter en utilisant votre email et votre mot de passe.",

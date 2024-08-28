@@ -8,7 +8,7 @@ export type LoginFormValues = {
   password: string;
 };
 
-const getLoginSchema = (t: TFunction) =>
+export const getSchema = (t: TFunction): z.ZodType<LoginFormValues> =>
   z.object({
     email: z
       .string()
@@ -18,9 +18,3 @@ const getLoginSchema = (t: TFunction) =>
       .string()
       .min(REQUIRED_LENGTH, { message: t('errors.required', { field: t('user.password') }) }),
   });
-
-export const getSchema = (t: TFunction) => {
-  const typedLoginSchema: z.ZodType<LoginFormValues> = getLoginSchema(t);
-
-  return typedLoginSchema;
-};

@@ -73,29 +73,6 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   });
 
   const handleSubmit = async (values: SetupPasswordFormValues | ChangePasswordFormValues) => {
-    if (isPasswordReset) {
-      // TODO: Set your payload
-      const resetPasswordPayload: CreateUserApiArg = {
-        user: {
-          username: code,
-          password: values.password,
-        },
-      };
-
-      try {
-        await resetPassword(resetPasswordPayload).unwrap();
-
-        showSuccessNotification({
-          message: t('identity.setupPassword.reset.notification.success'),
-        });
-        navigate(MAIN_ROUTES.LOGIN, { replace: true, state: { email } });
-      } catch (error) {
-        showErrorNotification(error);
-      }
-
-      return;
-    }
-
     if (isPasswordChange && 'currentPassword' in values) {
       // TODO: Set your payload
       const changePasswordPayload: CreateUserApiArg = {
@@ -118,9 +95,33 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
       return;
     }
 
+    if (isPasswordReset) {
+      // TODO: Set your payload
+      const resetPasswordPayload: CreateUserApiArg = {
+        user: {
+          username: code,
+          password: values.password,
+        },
+      };
+
+      try {
+        await resetPassword(resetPasswordPayload).unwrap();
+
+        showSuccessNotification({
+          message: t('identity.setupPassword.reset.notification.success'),
+        });
+        navigate(MAIN_ROUTES.LOGIN, { replace: true });
+      } catch (error) {
+        showErrorNotification(error);
+      }
+
+      return;
+    }
+
     // TODO: Set your payload
     const setupPasswordPayload: CreateUserApiArg = {
       user: {
+        username: code,
         password: values.password,
       },
     };
@@ -128,7 +129,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
     try {
       await setupPassword(setupPasswordPayload).unwrap();
 
-      showSuccessNotification({ message: t('identity.setupPassword.set.notification.success') });
+      showSuccessNotification({ message: t('identity.setupPassword.setup.notification.success') });
       navigate(MAIN_ROUTES.LOGIN, { replace: true, state: { email } });
     } catch (error) {
       showErrorNotification(error);

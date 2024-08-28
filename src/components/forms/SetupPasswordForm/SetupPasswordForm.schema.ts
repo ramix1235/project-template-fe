@@ -23,7 +23,7 @@ export type ChangePasswordFormValues = SetupPasswordFormValues & {
   currentPassword: string;
 };
 
-const getSetupPasswordSchema = (t: TFunction) =>
+const getUntypedSetupPasswordSchema = (t: TFunction) =>
   z.object({
     password: z.string().superRefine((value, ctx) => {
       if (!PASSWORD_IS_STRONG_REGEX.test(value)) {
@@ -52,8 +52,8 @@ const getSetupPasswordSchema = (t: TFunction) =>
     }),
   });
 
-const getChangePasswordSchema = (t: TFunction) =>
-  getSetupPasswordSchema(t).extend({
+const getChangePasswordSchema = (t: TFunction): z.ZodType<ChangePasswordFormValues> =>
+  getUntypedSetupPasswordSchema(t).extend({
     currentPassword: z.string().min(REQUIRED_LENGTH, {
       message: t('errors.required', { field: t('identity.setupPassword.currentPassword') }),
     }),
@@ -69,8 +69,7 @@ const refineSchema = (
   });
 
 export const getSchema = (t: TFunction, isPasswordChange: boolean) => {
-  const typedSetupPasswordSchema: z.ZodType<SetupPasswordFormValues> = getSetupPasswordSchema(t);
-  const typedChangePasswordSchema: z.ZodType<ChangePasswordFormValues> = getChangePasswordSchema(t);
+  const setupPasswordSchema: z.ZodType<SetupPasswordFormValues> = getUntypedSetupPasswordSchema(t);
 
-  return refineSchema(t, isPasswordChange ? typedChangePasswordSchema : typedSetupPasswordSchema);
+  return refineSchema(t, isPasswordChange ? getChangePasswordSchema(t) : setupPasswordSchema);
 };

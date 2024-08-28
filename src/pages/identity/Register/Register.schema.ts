@@ -1,7 +1,6 @@
 import { TFunction } from 'i18next';
 import { z } from 'zod';
 
-import { User } from '#/services/api/user';
 import {
   MAX_EMAIL_LENGTH,
   MAX_FIELD_LENGTH,
@@ -11,13 +10,15 @@ import {
   REQUIRED_LENGTH,
 } from '#/services/auth';
 
-export type RegisterFormValues = Required<
-  Pick<User, 'firstName' | 'lastName' | 'email' | 'password'>
-> & {
+export type RegisterFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
   terms: boolean;
 };
 
-const getRegisterSchema = (t: TFunction) =>
+export const getSchema = (t: TFunction): z.ZodType<RegisterFormValues> =>
   z.object({
     firstName: z
       .string()
@@ -75,9 +76,3 @@ const getRegisterSchema = (t: TFunction) =>
       message: t('identity.register.terms.errors.required'),
     }),
   });
-
-export const getSchema = (t: TFunction) => {
-  const typedRegisterSchema: z.ZodType<RegisterFormValues> = getRegisterSchema(t);
-
-  return typedRegisterSchema;
-};

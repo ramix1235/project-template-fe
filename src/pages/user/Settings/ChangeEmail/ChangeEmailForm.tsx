@@ -11,7 +11,7 @@ import { getSchema, ChangeEmailFormValues } from './ChangeEmailForm.schema';
 
 const initialChangeEmailValues: ChangeEmailFormValues = {
   email: '',
-  currentPassword: '',
+  password: '',
 };
 
 const ChangeEmailForm: React.FC = () => {
@@ -22,7 +22,7 @@ const ChangeEmailForm: React.FC = () => {
   const schema = getSchema(t);
   const form = useForm({
     ...getDefaultFormConfig(schema),
-    name: 'reset-password-form',
+    name: 'change-email-form',
     initialValues: initialChangeEmailValues,
   });
 
@@ -31,7 +31,7 @@ const ChangeEmailForm: React.FC = () => {
     const changeEmailPayload: CreateUserApiArg = {
       user: {
         email: values.email,
-        password: values.currentPassword,
+        password: values.password,
       },
     };
 
@@ -50,7 +50,7 @@ const ChangeEmailForm: React.FC = () => {
         <PasswordInput
           label={t('identity.setupPassword.currentPassword')}
           placeholder={t('identity.setupPassword.currentPassword.placeholder')}
-          {...form.getInputProps('currentPassword')}
+          {...form.getInputProps('password')}
         />
 
         <TextInput

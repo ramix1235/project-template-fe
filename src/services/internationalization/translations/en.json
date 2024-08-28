@@ -67,7 +67,7 @@
     "identity.setupPassword.confirmPassword.errors.match": "Passwords do not match",
     "identity.setupPassword.currentPassword": "Current Password",
     "identity.setupPassword.currentPassword.placeholder": "Your current password",
-    "identity.setupPassword.set.notification.success": "Your password has been set successfully. You can now log in using your email and password.",
+    "identity.setupPassword.setup.notification.success": "Your password has been set successfully. You can now log in using your email and password.",
     "identity.setupPassword.reset.notification.success": "Your password has been reset successfully. You can now log in using your new password.",
     "identity.setupPassword.change.notification.success": "Your password has been changed successfully",
     "identity.emailConfirm.activate.notification.success": "Your account has been activated successfully. You can now log in using your email and password.",
