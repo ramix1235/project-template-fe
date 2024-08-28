@@ -2,14 +2,14 @@ import { Button, ButtonProps, ElementProps } from '@mantine/core';
 import { clsx } from 'clsx';
 import { NavLink, NavLinkProps, NavLinkRenderProps } from 'react-router-dom';
 
-import classes from './NavigationButton.module.scss';
+import classes from './NavButton.module.scss';
 
 interface BackButtonProps
   extends ButtonProps,
     ElementProps<'a', keyof ButtonProps>,
     Pick<NavLinkProps, 'to'> {}
 
-const NavigationButtonRoot: React.FC<BackButtonProps> = ({ className, style, ...navLinkProps }) => {
+const NavButtonRoot: React.FC<BackButtonProps> = ({ className, style, ...navLinkProps }) => {
   const getClassName = ({ isActive }: NavLinkRenderProps) => {
     return clsx(classes.nav_link, { [classes.active]: isActive }, className);
   };
@@ -19,11 +19,11 @@ const NavigationButtonRoot: React.FC<BackButtonProps> = ({ className, style, ...
   );
 };
 
-const NavigationButton: React.FC<BackButtonProps> = ({ children, ...rest }) => {
+const NavButton: React.FC<BackButtonProps> = ({ children, ...rest }) => {
   return (
     <Button
       component={NavLink}
-      renderRoot={NavigationButtonRoot}
+      renderRoot={NavButtonRoot}
       fullWidth
       px="xs"
       justify="start"
@@ -35,4 +35,4 @@ const NavigationButton: React.FC<BackButtonProps> = ({ children, ...rest }) => {
   );
 };
 
-export default NavigationButton;
+export default NavButton;

@@ -5,8 +5,13 @@ import { useMatch, useNavigate, useResolvedPath, useSearchParams } from 'react-r
 
 import { SetupPasswordFormType } from '#/components/forms';
 import { Splash } from '#/pages/other';
-import { CreateUserApiArg, useCreateUserMutation } from '#/services/api/user';
 import { useAuth } from '#/services/auth';
+import {
+  MockPostActivateAccountApiArg,
+  MockPostChangeEmailConfirmApiArg,
+  useMockPostActivateAccountMutation,
+  useMockPostChangeEmailConfirmMutation,
+} from '#/services/mock';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
 
@@ -14,40 +19,43 @@ import { showErrorNotification, showSuccessNotification } from '#/services/notif
   Handled cases:
 
   1. Account activation:
-  - call confirmEmail endpoint
+  - call activateAccount endpoint
   - show success/error notification about ACTIVATE account action
   - logout if user authorized
   - redirect to the Login page
-  link: /action/email-confirm?code={code}
+  link: /action/account-activate?code={code}
 
   2. Account invitation:
-  - put params to the route state
   - logout if user authorized
+  - put params to the route state
   - redirect to the SetupPassword page
   - show success/error notification about SET password action
   - on success redirect to the Login page with pre-populated email field
   link: /action/password-setup?code={code}&email={email}
 
-  3. Email updating:
-  - call confirmEmail endpoint
-  - show success/error notification about UPDATE email action
+  3. Password resetting:
   - logout if user authorized
-  - redirect to the Login page
-  link: /action/email-confirm?code={code}&type=update
-
-  4. Password resetting:
   - put params to the route state
-  - logout if user authorized
   - redirect to the SetupPassword page
   - show success/error notification about RESET password action
   - on success redirect to the Login page
   link: /action/password-setup?code={code}&type=reset
+
+  4. Email updating:
+  - call changeEmail endpoint
+  - show success/error notification about UPDATE email action
+  - logout if user authorized
+  - redirect to the Login page
+  link: /action/email-change?code={code}
 */
+
+// TODO: Set your links and search params
 
 const ActionRedirect: React.FC = () => {
   const isActionCalled = useRef(false);
 
-  const [confirmEmail] = useCreateUserMutation(); // TODO: Set your hook
+  const [activateAccount] = useMockPostActivateAccountMutation(); // TODO: Set your hook
+  const [changeEmail] = useMockPostChangeEmailConfirmMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -56,34 +64,30 @@ const ActionRedirect: React.FC = () => {
 
   const resolvedPath = useResolvedPath('.');
   const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+  const email = searchParams.get('email');
+  const type = searchParams.get('type');
 
-  const isEmailConfirmRedirect = useMatch(`${resolvedPath.pathname}/email-confirm`);
-  const isPasswordSetupRedirect = useMatch(`${resolvedPath.pathname}/password-setup`);
+  const isActivateAccountRedirect = useMatch(`${resolvedPath.pathname}/account-activate`);
+  const isChangeEmailConfirmRedirect = useMatch(`${resolvedPath.pathname}/email-change`);
+  const isSetupPasswordRedirect = useMatch(`${resolvedPath.pathname}/password-setup`);
 
   useEffect(() => {
     if (!isActionCalled.current) {
       isActionCalled.current = true;
 
-      const code = searchParams.get('code') ?? '';
-      const type = searchParams.get('type') ?? '';
+      if (isActivateAccountRedirect) {
+        // TODO: Set your payload
+        const activateAccountPayload: MockPostActivateAccountApiArg = {
+          code: code ?? '',
+        };
 
-      // TODO: Set your payload
-      const actionPayload: CreateUserApiArg = {
-        user: {
-          username: code,
-        },
-      };
-
-      if (isEmailConfirmRedirect) {
-        confirmEmail(actionPayload)
+        activateAccount(activateAccountPayload)
           .unwrap()
           .then(() => {
-            const isEmailUpdate = type === 'update';
-            const successNotificationMessage = isEmailUpdate
-              ? t('identity.emailConfirm.update.notification.success')
-              : t('identity.emailConfirm.activate.notification.success');
-
-            showSuccessNotification({ message: successNotificationMessage });
+            showSuccessNotification({
+              message: t('identity.activateAccount.notification.success'),
+            });
           })
           .catch((error: unknown) => showErrorNotification(error))
           .finally(() => {
@@ -93,9 +97,28 @@ const ActionRedirect: React.FC = () => {
               logout();
             }
           });
-      } else if (isPasswordSetupRedirect) {
-        const email = searchParams.get('email') ?? '';
+      } else if (isChangeEmailConfirmRedirect) {
+        // TODO: Set your payload
+        const changeEmailConfirmPayload: MockPostChangeEmailConfirmApiArg = {
+          code: code ?? '',
+        };
 
+        changeEmail(changeEmailConfirmPayload)
+          .unwrap()
+          .then(() => {
+            showSuccessNotification({
+              message: t('identity.changeEmail.notification.success'),
+            });
+          })
+          .catch((error: unknown) => showErrorNotification(error))
+          .finally(() => {
+            if (isGuest) {
+              navigate(MAIN_ROUTES.LOGIN, { replace: true });
+            } else {
+              logout();
+            }
+          });
+      } else if (isSetupPasswordRedirect) {
         if (!isGuest) {
           logout();
         }
@@ -112,13 +135,17 @@ const ActionRedirect: React.FC = () => {
     }
   }, [
     t,
-    searchParams,
     isGuest,
-    isEmailConfirmRedirect,
-    isPasswordSetupRedirect,
+    isActivateAccountRedirect,
+    isChangeEmailConfirmRedirect,
+    isSetupPasswordRedirect,
+    code,
+    email,
+    type,
     navigate,
     logout,
-    confirmEmail,
+    activateAccount,
+    changeEmail,
   ]);
 
   return <Splash />;

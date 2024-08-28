@@ -4,8 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
-import { CreateUserApiArg, useCreateUserMutation } from '#/services/api/user';
 import { getDefaultFormConfig } from '#/services/forms';
+import {
+  MockPostChangePasswordApiArg,
+  MockPostResetPasswordApiArg,
+  MockPostSetupPasswordApiArg,
+  useMockPostChangePasswordMutation,
+  useMockPostResetPasswordMutation,
+  useMockPostSetupPasswordMutation,
+} from '#/services/mock';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
 
@@ -48,9 +55,10 @@ const initialChangePasswordValues: ChangePasswordFormValues = {
 const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   type = SetupPasswordFormType.Setup,
 }) => {
-  const [setupPassword, { isLoading: isSetupPasswordLoading }] = useCreateUserMutation(); // TODO: Set your hook
-  const [changePassword, { isLoading: isChangePasswordLoading }] = useCreateUserMutation(); // TODO: Set your hook
-  const [resetPassword, { isLoading: isResetPasswordLoading }] = useCreateUserMutation(); // TODO: Set your hook
+  const [setupPassword, { isLoading: isSetupPasswordLoading }] = useMockPostSetupPasswordMutation(); // TODO: Set your hook
+  const [changePassword, { isLoading: isChangePasswordLoading }] =
+    useMockPostChangePasswordMutation(); // TODO: Set your hook
+  const [resetPassword, { isLoading: isResetPasswordLoading }] = useMockPostResetPasswordMutation(); // TODO: Set your hook
 
   const isLoading = isSetupPasswordLoading || isChangePasswordLoading || isResetPasswordLoading;
 
@@ -62,6 +70,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   const code = state?.code;
   const email = state?.email;
   const formType = state?.type ?? type;
+
   const isPasswordReset = formType === SetupPasswordFormType.Reset;
   const isPasswordChange = formType === SetupPasswordFormType.Change;
 
@@ -75,11 +84,10 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   const handleSubmit = async (values: SetupPasswordFormValues | ChangePasswordFormValues) => {
     if (isPasswordChange && 'currentPassword' in values) {
       // TODO: Set your payload
-      const changePasswordPayload: CreateUserApiArg = {
-        user: {
-          username: values.currentPassword,
-          password: values.password,
-        },
+      const changePasswordPayload: MockPostChangePasswordApiArg = {
+        currentPassword: values.currentPassword,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
       };
 
       try {
@@ -97,11 +105,10 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
 
     if (isPasswordReset) {
       // TODO: Set your payload
-      const resetPasswordPayload: CreateUserApiArg = {
-        user: {
-          username: code,
-          password: values.password,
-        },
+      const resetPasswordPayload: MockPostResetPasswordApiArg = {
+        code: code ?? '',
+        password: values.password,
+        confirmPassword: values.confirmPassword,
       };
 
       try {
@@ -119,11 +126,10 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
     }
 
     // TODO: Set your payload
-    const setupPasswordPayload: CreateUserApiArg = {
-      user: {
-        username: code,
-        password: values.password,
-      },
+    const setupPasswordPayload: MockPostSetupPasswordApiArg = {
+      code: code ?? '',
+      password: values.password,
+      confirmPassword: values.confirmPassword,
     };
 
     try {

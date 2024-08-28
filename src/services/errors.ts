@@ -9,6 +9,7 @@ import { i18n } from '#/services/internationalization';
 export enum ErrorCodes {
   // HTTP status code
   InternalServerError = 500,
+  Unauthorized = 401,
 
   // An error that occurred during execution of `fetch` or the `fetchFn` callback option
   FetchError = 'FETCH_ERROR',

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     path: MAIN_ROUTES.HOME,
     errorElement: <ErrorBoundary />,
     element: (
-      <RouteInterceptor authRequired>
+      <RouteInterceptor authRequired permissions={['user:create']}>
         <UserLayout />
       </RouteInterceptor>
     ),
@@ -33,19 +33,21 @@ const router = createBrowserRouter([
       {
         index: true,
         handle: {
-          centered: true,
           title: (t: TFunction) => t('home'),
           crumb: (t: TFunction) => t('home'),
         },
         async lazy() {
           const { Home } = await import('#/pages/user');
 
-          return { element: <Home /> };
+          return {
+            element: <Home />,
+          };
         },
       },
       {
         path: MAIN_ROUTES.SETTINGS,
         handle: {
+          centered: true,
           title: (t: TFunction) => t('settings'),
           crumb: (t: TFunction) => t('settings'),
         },
@@ -83,24 +85,6 @@ const router = createBrowserRouter([
             },
           },
         ],
-      },
-      {
-        path: MAIN_ROUTES.DEBUG,
-        handle: {
-          title: (t: TFunction) => t('debug'),
-          crumb: (t: TFunction) => t('debug'),
-        },
-        async lazy() {
-          const { Debug } = await import('#/pages/user');
-
-          return {
-            element: (
-              <RouteInterceptor permissions={['user:debug']}>
-                <Debug />
-              </RouteInterceptor>
-            ),
-          };
-        },
       },
     ],
   },

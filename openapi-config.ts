@@ -20,9 +20,6 @@ const config: ConfigFile = {
     './src/services/api/pet/pet.api.ts': {
       filterEndpoints: pathMatcher(/^\/pet/i),
     },
-    './src/services/api/user/user.api.ts': {
-      filterEndpoints: pathMatcher(/^\/user/i),
-    },
   },
 };
 

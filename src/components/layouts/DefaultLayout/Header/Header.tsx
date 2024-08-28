@@ -34,12 +34,11 @@ const Header: React.FC<HeaderProps> = ({
         {!disabledNavbar && (
           <Burger opened={openedBurgerMenu} onClick={toggleBurgerMenu} hiddenFrom="md" />
         )}
-        <Link to={MAIN_ROUTES.HOME}>
-          <img
-            className={clsx({ 'mantine-visible-from-md': !disabledNavbar })}
-            src={viteLogo}
-            alt={t('common.logo')}
-          />
+        <Link
+          to={MAIN_ROUTES.HOME}
+          className={clsx({ 'mantine-visible-from-md': !disabledNavbar })}
+        >
+          <img src={viteLogo} alt={t('common.logo')} />
         </Link>
 
         {!isGuest && <LogoutButton />}

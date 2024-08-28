@@ -3,8 +3,11 @@ import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
 import { SubmitButton } from '#/components/forms';
-import { CreateUserApiArg, useCreateUserMutation } from '#/services/api/user';
 import { getDefaultFormConfig } from '#/services/forms';
+import {
+  MockPostChangeEmailRequestApiArg,
+  useMockPostChangeEmailRequestMutation,
+} from '#/services/mock';
 import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
 
 import { getSchema, ChangeEmailFormValues } from './ChangeEmailForm.schema';
@@ -15,7 +18,8 @@ const initialChangeEmailValues: ChangeEmailFormValues = {
 };
 
 const ChangeEmailForm: React.FC = () => {
-  const [changeEmail, { isLoading: isChangeEmailLoading }] = useCreateUserMutation(); // TODO: Set your hook
+  const [changeEmail, { isLoading: isChangeEmailLoading }] =
+    useMockPostChangeEmailRequestMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
 
@@ -28,11 +32,9 @@ const ChangeEmailForm: React.FC = () => {
 
   const handleSubmit = async (values: ChangeEmailFormValues) => {
     // TODO: Set your payload
-    const changeEmailPayload: CreateUserApiArg = {
-      user: {
-        email: values.email,
-        password: values.password,
-      },
+    const changeEmailPayload: MockPostChangeEmailRequestApiArg = {
+      email: values.email,
+      password: values.password,
     };
 
     try {

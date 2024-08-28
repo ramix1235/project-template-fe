@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
 import { TERMS_AND_CONDITIONS_LINK } from '#/constants/links';
-import { CreateUserApiArg, useCreateUserMutation } from '#/services/api/user';
 import { getDefaultFormConfig } from '#/services/forms';
+import { MockPostRegisterApiArg, useMockPostRegisterMutation } from '#/services/mock';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
 
@@ -21,7 +21,7 @@ const initialRegisterValues: RegisterFormValues = {
 };
 
 const RegisterForm: React.FC = () => {
-  const [register, { isLoading: isRegisterLoading }] = useCreateUserMutation(); //  TODO: Set your hook
+  const [register, { isLoading: isRegisterLoading }] = useMockPostRegisterMutation(); //  TODO: Set your hook
 
   const { t } = useTranslation();
 
@@ -34,13 +34,11 @@ const RegisterForm: React.FC = () => {
 
   const handleSubmit = async (values: RegisterFormValues) => {
     //  TODO: Set your payload
-    const registerPayload: CreateUserApiArg = {
-      user: {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password,
-      },
+    const registerPayload: MockPostRegisterApiArg = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password,
     };
 
     try {

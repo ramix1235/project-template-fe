@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
-import { LoginUserApiArg, useLazyLoginUserQuery } from '#/services/api/user';
 import { AuthAccount, setAuth } from '#/services/auth';
 import { getDefaultFormConfig } from '#/services/forms';
-import { mockedAccount } from '#/services/mock';
+import { MockPostLoginApiArg, useMockPostLoginMutation } from '#/services/mock';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification } from '#/services/notifications';
 import { useAppDispatch } from '#/services/store';
@@ -24,7 +23,7 @@ const initialLoginValues: LoginFormValues = {
 };
 
 const LoginForm: React.FC = () => {
-  const [login, { isLoading: isLoginLoading }] = useLazyLoginUserQuery(); // TODO: Set your hook
+  const [login, { isLoading: isLoginLoading }] = useMockPostLoginMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
   const location = useLocation();
@@ -42,9 +41,9 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (values: LoginFormValues) => {
     // TODO: Set your payload
-    const loginPayload: LoginUserApiArg = {
+    const loginPayload: MockPostLoginApiArg = {
+      email: values.email,
       password: values.password,
-      username: values.email,
     };
 
     try {
@@ -52,8 +51,8 @@ const LoginForm: React.FC = () => {
 
       // TODO: Set your auth data
       const authAccount: AuthAccount = {
-        ...mockedAccount,
-        token: result.split(':')[1],
+        permissions: result.permissions,
+        token: result.token,
       };
 
       dispatch(setAuth({ account: authAccount }));

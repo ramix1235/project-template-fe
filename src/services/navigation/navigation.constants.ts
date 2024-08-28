@@ -10,7 +10,6 @@ export const MAIN_ROUTES = {
   // User
   HOME: '/',
   SETTINGS: '/account-settings',
-  DEBUG: '/debug',
 
   // Other
   ACTION_REDIRECT: '/action/*',

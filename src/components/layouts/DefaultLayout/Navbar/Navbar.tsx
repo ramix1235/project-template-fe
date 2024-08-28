@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { Can } from '#/services/permissions';
 
-import NavigationButton from './NavigationButton';
+import NavButton from './NavButton';
 
 import classes from './Navbar.module.scss';
 
@@ -20,10 +20,11 @@ const Navbar: React.FC<NavbarProps> = ({ withBorder = true, ...rest }) => {
       </Text>
 
       <AppShell.Section component={ScrollArea} px="md" grow>
-        <NavigationButton to={MAIN_ROUTES.HOME}>{t('home')}</NavigationButton>
-        <NavigationButton to={MAIN_ROUTES.SETTINGS}>{t('settings')}</NavigationButton>
-        <Can I="debug" a="user">
-          <NavigationButton to={MAIN_ROUTES.DEBUG}>{t('debug')}</NavigationButton>
+        <Can I="create" a="user">
+          <NavButton to={MAIN_ROUTES.HOME}>{t('home')}</NavButton>
+        </Can>
+        <Can I="create" a="user">
+          <NavButton to={MAIN_ROUTES.SETTINGS}>{t('settings')}</NavButton>
         </Can>
       </AppShell.Section>
 

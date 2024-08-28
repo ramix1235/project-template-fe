@@ -3,8 +3,11 @@ import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
 import { BackButton, SubmitButton } from '#/components/forms';
-import { CreateUserApiArg, useCreateUserMutation } from '#/services/api/user';
 import { getDefaultFormConfig } from '#/services/forms';
+import {
+  MockPostResetPasswordRequestApiArg,
+  useMockPostResetPasswordRequestMutation,
+} from '#/services/mock';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
 
@@ -15,7 +18,8 @@ const initialResetPasswordValues: ResetPasswordFormValues = {
 };
 
 const ResetPasswordForm: React.FC = () => {
-  const [resetPassword, { isLoading: isResetPasswordLoading }] = useCreateUserMutation(); //  TODO: Set your hook
+  const [resetPassword, { isLoading: isResetPasswordLoading }] =
+    useMockPostResetPasswordRequestMutation(); //  TODO: Set your hook
 
   const { t } = useTranslation();
 
@@ -28,10 +32,8 @@ const ResetPasswordForm: React.FC = () => {
 
   const handleSubmit = async (values: ResetPasswordFormValues) => {
     //  TODO: Set your payload
-    const resetPasswordPayload: CreateUserApiArg = {
-      user: {
-        email: values.email,
-      },
+    const resetPasswordPayload: MockPostResetPasswordRequestApiArg = {
+      email: values.email,
     };
 
     try {
