@@ -27,7 +27,7 @@
     "navbar.footer": "Pied de page de la barre de navigation – toujours en bas",
 
     "home": "Maison",
-    "home.title": "Vite + Réagir",
+    "home.title": "Vite + React",
     "home.button.title": "le nombre est de {{count}}",
     "home.edit": "Modifiez <Code>src/pages/user/Home</Code> et enregistrez pour tester HMR",
     "home.dimmed": "Cliquez sur <Anchor href=\"https://vitejs.dev\">Vite</Anchor> et <Anchor href=\"https://react.dev\">React</Anchor> logos pour en savoir plus",

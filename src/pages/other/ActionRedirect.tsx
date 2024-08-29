@@ -63,6 +63,7 @@ const ActionRedirect: React.FC = () => {
   const { isGuest, logout } = useAuth();
 
   const resolvedPath = useResolvedPath('.');
+
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
   const email = searchParams.get('email');
