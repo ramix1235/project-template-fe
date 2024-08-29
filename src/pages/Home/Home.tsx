@@ -5,6 +5,8 @@ import ReactLogo from '#/assets/react.svg?react';
 
 import classes from './Home.module.scss';
 
+// TODO: Set your content for Home page
+
 const Home: React.FC = () => {
   const [count, setCount] = useState(0);
 
@@ -26,7 +28,7 @@ const Home: React.FC = () => {
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
 
         <p>
-          Edit <code>src/pages/Home.tsx</code> and save to test HMR
+          Edit <code>src/pages/Home</code> and save to test HMR
         </p>
       </div>
 
