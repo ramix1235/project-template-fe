@@ -1,50 +1,56 @@
 # Branch vite-ts
 
 ## Description
-  Implements a services-based project structure in which components use functionality isolated into services for better modularity. 
+
+Implements a services-based project structure in which components use functionality isolated into services for better modularity. 
   
-  _Note: services still depend on the project. For absolute independence, the repository should use [pnpm workspaces](https://pnpm.io/workspaces) or [Nx](https://nx.dev) and become a monorepository where services are packages with their own package.json, tsconfig.json, etc._
+_Note: services still depend on the project. For absolute independence, the repository should use [pnpm workspaces](https://pnpm.io/workspaces) or [Nx](https://nx.dev) and become a monorepository where services are packages with their own package.json, tsconfig.json, etc._
 
 ## Features
-  - Development configuration (part of vite-ts-min) - for quickly starting a project from scratch.
-  - Design - set of components, set of hooks for state and UI management, set of icons, notifications management, forms management, theme management and theme select component.
-  - Data management - store and cache management for authorization and API.
-  - Navigation - routing for pages which are described below.
-  - Internationalization - translations and language select component.
-  - Validations - schema-based validations for forms.
-  - Permissions - access restriction for pages/components/logic.
-  - Authorization - basic auth token-based flow.
 
- ## Pages:
-  - Identity:
-    - Login
-    - Register
-    - Reset/Forgot/Setup Password
-  - User:
-    - Home
-    - Settings:
-      - Change Password
-      - Change Email
-  - Other:
-    - Action Redirect - handles redirects with special parameters for some actions.
-    - Not Found - handles pages which don't exists in navigation.
-    - Splash - handles loading state in pages.
-    - Error Boundary - handles exceptions in component rendering.
+- Development configuration (part of vite-ts-min) - for quickly starting a project from scratch.
+- Design - set of components, set of hooks for state and UI management, set of icons, notifications management, forms management, theme management and theme select component.
+- Data management - store and cache management for authorization and API.
+- Navigation - routing for pages which are described below.
+- Internationalization - translations and language select component.
+- Validations - schema-based validations for forms.
+- Permissions - access restriction for pages/components/logic.
+- Authorization - basic auth token-based flow.
+
+## Pages:
+- Identity:
+  - Login
+  - Register
+  - Reset/Forgot/Setup Password
+- User:
+  - Home
+  - Settings:
+    - Change Password
+    - Change Email
+- Other:
+  - Action Redirect - handles redirects with special parameters for some actions.
+  - Not Found - handles pages which don't exists in navigation.
+  - Splash - handles loading state in pages.
+  - Error Boundary - handles exceptions in component rendering.
 
 ## Getting Started
+
 1. Read general instructions in main branch.
 2. ``pnpm run dev`` - run the development server and http://localhost:4200 automatically opens in the browser.
 3. Check all TODO comments in the whole project to customize the template for yourself and remove stubs and mocks.
 4. ``pnpm run codegen:openapi`` - run the API code generation command.
 
 ## Deployment
+
 1. ``pnpm run build`` - run the production build command.
 2. Check dist folder in the project root.
 
 ## Useful links
+
 - [mantine-for-figma](https://mantine.dev/getting-started/#mantine-for-figma) - community-driven projects that provide Figma components based on Mantine.
 
 ## Dependencies:
+
 - #### Development configuration:
     - [react](https://react.dev) - building fast, interactive UI using reusable components.
         - [react-dom](https://www.npmjs.com/package/react-dom) - entry point to the DOM renderers for React.
