@@ -1,25 +1,30 @@
 # Branch vite-ts-min
 
 ## Description
-  Implements a minimal project structure with recommended development configuration. 
-  
+
+Implements a minimal project structure with recommended development configuration. 
 
 ## Features
-  - Development configuration - for quickly starting a project from scratch.
 
- ## Pages:
-  - Home
+- Development configuration - for quickly starting a project from scratch.
+
+## Pages:
+
+- Home
 
 ## Getting Started
+
 1. Read general instructions in main branch.
 2. ``pnpm run dev`` - run the development server and http://localhost:4200 automatically opens in the browser.
 3. Check all TODO comments in the whole project to customize the template for yourself and remove stubs and mocks.
 
 ## Deployment
+
 1. ``pnpm run build`` - run the production build command.
 2. Check dist folder in the project root.
 
 ## Dependencies:
+
 - #### Development configuration:
     - [react](https://react.dev) - building fast, interactive UI using reusable components.
         - [react-dom](https://www.npmjs.com/package/react-dom) - entry point to the DOM renderers for React.
