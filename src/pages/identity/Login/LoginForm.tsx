@@ -4,11 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
+import { MockPostLoginApiArg, useMockPostLoginMutation } from '#/mocks/api';
 import { AuthAccount, setAuth } from '#/services/auth';
-import { getDefaultFormConfig } from '#/services/forms';
-import { MockPostLoginApiArg, useMockPostLoginMutation } from '#/services/mock';
+import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { showErrorNotification } from '#/services/notifications';
 import { useAppDispatch } from '#/services/store';
 
 import { getSchema, LoginFormValues } from './LoginForm.schema';
@@ -23,7 +22,7 @@ const initialLoginValues: LoginFormValues = {
 };
 
 const LoginForm: React.FC = () => {
-  const [login, { isLoading: isLoginLoading }] = useMockPostLoginMutation(); // TODO: Set your hook
+  const [login, { isLoading: isLoginLoading, error: loginError }] = useMockPostLoginMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
   const location = useLocation();
@@ -39,6 +38,8 @@ const LoginForm: React.FC = () => {
     initialValues: { ...initialLoginValues, email: email ?? initialLoginValues.email },
   });
 
+  useFormErrorHandler(form, loginError);
+
   const handleSubmit = async (values: LoginFormValues) => {
     // TODO: Set your payload
     const loginPayload: MockPostLoginApiArg = {
@@ -46,19 +47,15 @@ const LoginForm: React.FC = () => {
       password: values.password,
     };
 
-    try {
-      const result = await login(loginPayload).unwrap();
+    const result = await login(loginPayload).unwrap();
 
-      // TODO: Set your auth data
-      const authAccount: AuthAccount = {
-        permissions: result.permissions,
-        token: result.token,
-      };
+    // TODO: Set your auth data
+    const authAccount: AuthAccount = {
+      permissions: result.permissions,
+      token: result.token,
+    };
 
-      dispatch(setAuth({ account: authAccount }));
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    dispatch(setAuth({ account: authAccount }));
   };
 
   const handleValidationFailure = (errors: FormErrors) => {

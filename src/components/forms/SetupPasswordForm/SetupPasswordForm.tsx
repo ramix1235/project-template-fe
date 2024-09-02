@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
-import { getDefaultFormConfig } from '#/services/forms';
 import {
   MockPostChangePasswordApiArg,
   MockPostResetPasswordApiArg,
@@ -12,9 +11,10 @@ import {
   useMockPostChangePasswordMutation,
   useMockPostResetPasswordMutation,
   useMockPostSetupPasswordMutation,
-} from '#/services/mock';
+} from '#/mocks/api';
+import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
+import { showSuccessNotification } from '#/services/notifications';
 
 import {
   ChangePasswordFormValues,
@@ -55,12 +55,15 @@ const initialChangePasswordValues: ChangePasswordFormValues = {
 const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   type = SetupPasswordFormType.Setup,
 }) => {
-  const [setupPassword, { isLoading: isSetupPasswordLoading }] = useMockPostSetupPasswordMutation(); // TODO: Set your hook
-  const [changePassword, { isLoading: isChangePasswordLoading }] =
+  const [setupPassword, { isLoading: isSetupPasswordLoading, error: setupPasswordError }] =
+    useMockPostSetupPasswordMutation(); // TODO: Set your hook
+  const [changePassword, { isLoading: isChangePasswordLoading, error: changePasswordError }] =
     useMockPostChangePasswordMutation(); // TODO: Set your hook
-  const [resetPassword, { isLoading: isResetPasswordLoading }] = useMockPostResetPasswordMutation(); // TODO: Set your hook
+  const [resetPassword, { isLoading: isResetPasswordLoading, error: resetPasswordError }] =
+    useMockPostResetPasswordMutation(); // TODO: Set your hook
 
   const isLoading = isSetupPasswordLoading || isChangePasswordLoading || isResetPasswordLoading;
+  const error = setupPasswordError || changePasswordError || resetPasswordError;
 
   const { t } = useTranslation();
   const location = useLocation();
@@ -81,6 +84,8 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
     initialValues: isPasswordChange ? initialChangePasswordValues : initialSetupPasswordValues,
   });
 
+  useFormErrorHandler(form, error);
+
   const handleSubmit = async (values: SetupPasswordFormValues | ChangePasswordFormValues) => {
     if (isPasswordChange && 'currentPassword' in values) {
       // TODO: Set your payload
@@ -90,15 +95,11 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
         confirmPassword: values.confirmPassword,
       };
 
-      try {
-        await changePassword(changePasswordPayload).unwrap();
+      await changePassword(changePasswordPayload).unwrap();
 
-        showSuccessNotification({
-          message: t('identity.setupPassword.change.notification.success'),
-        });
-      } catch (error) {
-        showErrorNotification(error);
-      }
+      showSuccessNotification({
+        message: t('identity.setupPassword.change.notification.success'),
+      });
 
       return;
     }
@@ -111,16 +112,13 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
         confirmPassword: values.confirmPassword,
       };
 
-      try {
-        await resetPassword(resetPasswordPayload).unwrap();
+      await resetPassword(resetPasswordPayload).unwrap();
 
-        showSuccessNotification({
-          message: t('identity.setupPassword.reset.notification.success'),
-        });
-        navigate(MAIN_ROUTES.LOGIN, { replace: true });
-      } catch (error) {
-        showErrorNotification(error);
-      }
+      showSuccessNotification({
+        message: t('identity.setupPassword.reset.notification.success'),
+      });
+
+      navigate(MAIN_ROUTES.LOGIN, { replace: true });
 
       return;
     }
@@ -132,14 +130,11 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
       confirmPassword: values.confirmPassword,
     };
 
-    try {
-      await setupPassword(setupPasswordPayload).unwrap();
+    await setupPassword(setupPasswordPayload).unwrap();
 
-      showSuccessNotification({ message: t('identity.setupPassword.setup.notification.success') });
-      navigate(MAIN_ROUTES.LOGIN, { replace: true, state: { email } });
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    showSuccessNotification({ message: t('identity.setupPassword.setup.notification.success') });
+
+    navigate(MAIN_ROUTES.LOGIN, { replace: true, state: { email } });
   };
 
   return (

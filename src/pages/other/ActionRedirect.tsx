@@ -4,16 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { useMatch, useNavigate, useResolvedPath, useSearchParams } from 'react-router-dom';
 
 import { SetupPasswordFormType } from '#/components/forms';
-import { Splash } from '#/pages/other';
-import { useAuth } from '#/services/auth';
 import {
   MockPostActivateAccountApiArg,
   MockPostChangeEmailConfirmApiArg,
   useMockPostActivateAccountMutation,
   useMockPostChangeEmailConfirmMutation,
-} from '#/services/mock';
+} from '#/mocks/api';
+import { Splash } from '#/pages/other';
+import { useAuth } from '#/services/auth';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
+import { showSuccessNotification } from '#/services/notifications';
 
 /*
   Handled cases:
@@ -90,7 +90,6 @@ const ActionRedirect: React.FC = () => {
               message: t('identity.activateAccount.notification.success'),
             });
           })
-          .catch((error: unknown) => showErrorNotification(error))
           .finally(() => {
             if (isGuest) {
               navigate(MAIN_ROUTES.LOGIN, { replace: true });
@@ -111,7 +110,6 @@ const ActionRedirect: React.FC = () => {
               message: t('identity.changeEmail.notification.success'),
             });
           })
-          .catch((error: unknown) => showErrorNotification(error))
           .finally(() => {
             if (isGuest) {
               navigate(MAIN_ROUTES.LOGIN, { replace: true });

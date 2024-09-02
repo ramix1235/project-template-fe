@@ -1,12 +1,35 @@
 import { API as api } from '#/services/api';
 
-// TODO: Use this file to mock any data and api calls
+// TODO: Use this file to mock api calls
 
-// MOCK DATA
-export const mockedAllPermissions = ['user:create', 'user:read', 'user:update', 'user:delete'];
-
-// MOCK API
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
+
+const mockedAllPermissions = ['user:create', 'user:read', 'user:update', 'user:delete'];
+
+// Invalid request response
+const generateInvalidRequestResponse = (message: string) => {
+  return {
+    error: {
+      status: 500,
+      data: {
+        code: 500,
+        message,
+      },
+    },
+  };
+};
+
+// Invalid request validation response
+const generateInvalidRequestValidationResponse = (errors: { [key: string]: string[] }) => {
+  return {
+    error: {
+      status: 400,
+      data: {
+        errors,
+      },
+    },
+  };
+};
 
 const injectedMockApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -87,11 +110,9 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return {
-          data: {
-            isSuccess: true,
-          },
-        };
+        return generateInvalidRequestValidationResponse({
+          email: ['Mocked error - Invalid email', 'Mocked error - Incorrect email'],
+        });
       },
     }),
     mockPostResetPasswordRequest: build.mutation<
@@ -167,11 +188,7 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return {
-          data: {
-            isSuccess: true,
-          },
-        };
+        return generateInvalidRequestResponse('Mocked error - Invalid password');
       },
     }),
     mockPostResetPassword: build.mutation<

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { SubmitButton } from '#/components/forms';
 import { TERMS_AND_CONDITIONS_LINK } from '#/constants/links';
-import { getDefaultFormConfig } from '#/services/forms';
-import { MockPostRegisterApiArg, useMockPostRegisterMutation } from '#/services/mock';
+import { MockPostRegisterApiArg, useMockPostRegisterMutation } from '#/mocks/api';
+import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
+import { showSuccessNotification } from '#/services/notifications';
 
 import { RegisterFormValues, getSchema } from './Register.schema';
 
@@ -21,7 +21,8 @@ const initialRegisterValues: RegisterFormValues = {
 };
 
 const RegisterForm: React.FC = () => {
-  const [register, { isLoading: isRegisterLoading }] = useMockPostRegisterMutation(); //  TODO: Set your hook
+  const [register, { isLoading: isRegisterLoading, error: registerError }] =
+    useMockPostRegisterMutation(); //  TODO: Set your hook
 
   const { t } = useTranslation();
 
@@ -32,6 +33,8 @@ const RegisterForm: React.FC = () => {
     initialValues: initialRegisterValues,
   });
 
+  useFormErrorHandler(form, registerError);
+
   const handleSubmit = async (values: RegisterFormValues) => {
     //  TODO: Set your payload
     const registerPayload: MockPostRegisterApiArg = {
@@ -41,13 +44,9 @@ const RegisterForm: React.FC = () => {
       password: values.password,
     };
 
-    try {
-      await register(registerPayload).unwrap();
+    await register(registerPayload).unwrap();
 
-      showSuccessNotification({ message: t('identity.register.notification.success') });
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    showSuccessNotification({ message: t('identity.register.notification.success') });
   };
 
   const handleValidationFailure = (errors: FormErrors) => {

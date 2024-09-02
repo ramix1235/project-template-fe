@@ -9,7 +9,6 @@
 
     "errors.title": "Oops!",
     "errors.404.title": "404 - Page not found",
-    "errors.500.title": "It looks like your data caused an error",
     "errors.common": "Sorry, an unexpected error has occurred",
     "errors.required": "{{field}} is required",
     "errors.permission": "Access denied",

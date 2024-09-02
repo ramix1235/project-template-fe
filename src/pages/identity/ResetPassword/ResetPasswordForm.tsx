@@ -3,13 +3,13 @@ import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
 import { BackButton, SubmitButton } from '#/components/forms';
-import { getDefaultFormConfig } from '#/services/forms';
 import {
   MockPostResetPasswordRequestApiArg,
   useMockPostResetPasswordRequestMutation,
-} from '#/services/mock';
+} from '#/mocks/api';
+import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
+import { showSuccessNotification } from '#/services/notifications';
 
 import { getSchema, ResetPasswordFormValues } from './ResetPasswordForm.schema';
 
@@ -18,7 +18,7 @@ const initialResetPasswordValues: ResetPasswordFormValues = {
 };
 
 const ResetPasswordForm: React.FC = () => {
-  const [resetPassword, { isLoading: isResetPasswordLoading }] =
+  const [resetPassword, { isLoading: isResetPasswordLoading, error: resetPasswordError }] =
     useMockPostResetPasswordRequestMutation(); //  TODO: Set your hook
 
   const { t } = useTranslation();
@@ -30,19 +30,17 @@ const ResetPasswordForm: React.FC = () => {
     initialValues: initialResetPasswordValues,
   });
 
+  useFormErrorHandler(form, resetPasswordError);
+
   const handleSubmit = async (values: ResetPasswordFormValues) => {
     //  TODO: Set your payload
     const resetPasswordPayload: MockPostResetPasswordRequestApiArg = {
       email: values.email,
     };
 
-    try {
-      await resetPassword(resetPasswordPayload).unwrap();
+    await resetPassword(resetPasswordPayload).unwrap();
 
-      showSuccessNotification({ message: t('identity.resetPassword.notification.success') });
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    showSuccessNotification({ message: t('identity.resetPassword.notification.success') });
   };
 
   return (

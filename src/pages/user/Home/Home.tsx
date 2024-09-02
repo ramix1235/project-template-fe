@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { PageLoader } from '#/components/layouts';
-import { useMockGetCountQuery, useMockPostCountUpdateMutation } from '#/services/mock';
+import { useMockGetCountQuery, useMockPostCountUpdateMutation } from '#/mocks/api';
 
 import HomeTable from './HomeTable';
 

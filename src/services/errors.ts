@@ -4,11 +4,16 @@
 
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
+import {
+  MockedInvalidRequestResponse,
+  MockedInvalidRequestValidationResponse,
+} from '#/mocks/errors';
 import { i18n } from '#/services/internationalization';
+
+// TODO: Set your error handling
 
 export enum ErrorCodes {
   // HTTP status code
-  InternalServerError = 500,
   Unauthorized = 401,
 
   // An error that occurred during execution of `fetch` or the `fetchFn` callback option
@@ -23,7 +28,7 @@ export enum ErrorCodes {
   CustomError = 'CUSTOM_ERROR',
 }
 
-export const isErrorWithMessage = (error: unknown): error is { message: string } => {
+const isErrorWithMessage = (error: unknown): error is { message: string } => {
   return (
     typeof error === 'object' &&
     error != null &&
@@ -36,18 +41,28 @@ export const isFetchBaseQueryError = (error: unknown): error is FetchBaseQueryEr
   return typeof error === 'object' && error != null && 'status' in error;
 };
 
-export type HttpError = Extract<FetchBaseQueryError, { status: number }>;
+type HttpError = Extract<FetchBaseQueryError, { status: number }>;
 
-export const isHttpError = (error: unknown): error is HttpError => {
-  return (
-    typeof error === 'object' &&
-    error != null &&
-    'status' in error &&
-    typeof (error as any).status === 'number'
-  );
+const isHttpError = (error: unknown): error is HttpError => {
+  return isFetchBaseQueryError(error) && typeof (error as any).status === 'number';
 };
 
-// TODO: Add error handling for your API
+type InvalidRequestError = Omit<HttpError, 'data'> & { data: MockedInvalidRequestResponse };
+
+const isInvalidRequestError = (error: unknown): error is InvalidRequestError => {
+  return isHttpError(error) && typeof (error.data as any).code === 'number';
+};
+
+type InvalidValidationRequestError = Omit<HttpError, 'data'> & {
+  data: MockedInvalidRequestValidationResponse;
+};
+
+export const isInvalidValidationRequestError = (
+  error: unknown,
+): error is InvalidValidationRequestError => {
+  return isHttpError(error) && typeof (error.data as any).errors === 'object';
+};
+
 export const getErrorText = (error: unknown) => {
   if (typeof error === 'string') {
     return error;
@@ -59,13 +74,8 @@ export const getErrorText = (error: unknown) => {
     return error.message;
   }
 
-  if (isFetchBaseQueryError(error)) {
-    if (isHttpError(error)) {
-      // Handle http errors here
-      if (error.status === ErrorCodes.InternalServerError) {
-        return i18n.t('errors.500.title');
-      }
-    }
+  if (isInvalidRequestError(error)) {
+    return error.data.message;
   }
 
   return i18n.t('errors.common');

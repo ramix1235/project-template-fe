@@ -3,12 +3,12 @@ import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
 import { SubmitButton } from '#/components/forms';
-import { getDefaultFormConfig } from '#/services/forms';
 import {
   MockPostChangeEmailRequestApiArg,
   useMockPostChangeEmailRequestMutation,
-} from '#/services/mock';
-import { showErrorNotification, showSuccessNotification } from '#/services/notifications';
+} from '#/mocks/api';
+import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
+import { showSuccessNotification } from '#/services/notifications';
 
 import { getSchema, ChangeEmailFormValues } from './ChangeEmailForm.schema';
 
@@ -18,7 +18,7 @@ const initialChangeEmailValues: ChangeEmailFormValues = {
 };
 
 const ChangeEmailForm: React.FC = () => {
-  const [changeEmail, { isLoading: isChangeEmailLoading }] =
+  const [changeEmail, { isLoading: isChangeEmailLoading, error: changeEmailError }] =
     useMockPostChangeEmailRequestMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
@@ -30,6 +30,8 @@ const ChangeEmailForm: React.FC = () => {
     initialValues: initialChangeEmailValues,
   });
 
+  useFormErrorHandler(form, changeEmailError);
+
   const handleSubmit = async (values: ChangeEmailFormValues) => {
     // TODO: Set your payload
     const changeEmailPayload: MockPostChangeEmailRequestApiArg = {
@@ -37,13 +39,9 @@ const ChangeEmailForm: React.FC = () => {
       password: values.password,
     };
 
-    try {
-      await changeEmail(changeEmailPayload).unwrap();
+    await changeEmail(changeEmailPayload).unwrap();
 
-      showSuccessNotification({ message: t('settings.changeEmail.notification.success') });
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    showSuccessNotification({ message: t('settings.changeEmail.notification.success') });
   };
 
   return (

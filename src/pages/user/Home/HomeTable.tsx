@@ -12,7 +12,6 @@ import {
   useAddPetMutation,
   useFindPetsByTagsQuery,
 } from '#/services/api/pet';
-import { showErrorNotification } from '#/services/notifications';
 import { getPageTotal, paginate } from '#/services/pagination';
 
 const defaultPets: Pet[] = [];
@@ -63,11 +62,7 @@ const HomeTable = () => {
       },
     };
 
-    try {
-      await addPet(addPetPayload).unwrap();
-    } catch (error) {
-      showErrorNotification(error);
-    }
+    await addPet(addPetPayload).unwrap();
   };
 
   return (

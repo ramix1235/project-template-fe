@@ -9,7 +9,6 @@
 
     "errors.title": "Oups !",
     "errors.404.title": "404 - Page introuvable",
-    "errors.500.title": "Il semble que vos données aient provoqué une erreur",
     "errors.common": "Désolé, une erreur inattendue s'est produite",
     "errors.required": "{{field}} est obligatoire",
     "errors.permission": "Accès refusé",

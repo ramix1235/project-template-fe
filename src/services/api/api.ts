@@ -7,9 +7,9 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 
+import { MockPostRefreshTokenApiArg, MockPostRefreshTokenApiResponse } from '#/mocks/api';
 import { clearAuth, refreshAccess } from '#/services/auth';
 import { ErrorCodes } from '#/services/errors';
-import { MockPostRefreshTokenApiArg, MockPostRefreshTokenApiResponse } from '#/services/mock';
 import { RootState } from '#/services/store';
 
 const environments = import.meta.env;
