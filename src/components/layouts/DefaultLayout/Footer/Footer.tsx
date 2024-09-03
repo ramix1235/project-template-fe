@@ -11,7 +11,7 @@ interface FooterProps
 const Footer: React.FC<FooterProps> = (props) => {
   return (
     <AppShell.Footer {...props}>
-      <Group h="100%" px="md" className={classes.container}>
+      <Group wrap="nowrap" h="100%" px="md" className={classes.container}>
         <ThemeSelect size="xs" />
         <LocaleSelect size="xs" />
       </Group>

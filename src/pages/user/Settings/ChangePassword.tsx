@@ -10,7 +10,9 @@ const ChangePassword: React.FC = () => {
   return (
     <>
       <PageHeaderToolbar>
-        <Text lineClamp={1}>{t('pageHeader.toolbar')}</Text>
+        <Text ta="right" lineClamp={3}>
+          {t('pageHeader.toolbar')}
+        </Text>
       </PageHeaderToolbar>
 
       <Container size="xs" p={0}>

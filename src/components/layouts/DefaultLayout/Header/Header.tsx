@@ -2,6 +2,7 @@ import { AppShell, AppShellHeaderProps, Burger, ElementProps, Group, Image } fro
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { LOGO_SIZE } from '#/components';
 import { useAuth } from '#/services/auth';
 import { MAIN_ROUTES } from '#/services/navigation';
 
@@ -29,10 +30,10 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <AppShell.Header {...rest}>
-      <Group h="100%" justify="space-between" px="md">
-        <Group gap="xs">
+      <Group wrap="nowrap" h="100%" justify="space-between" px="md">
+        <Group wrap="nowrap" gap="xs">
           <Link to={MAIN_ROUTES.HOME}>
-            <Image src={viteLogo} alt={t('common.logo')} />
+            <Image src={viteLogo} width={LOGO_SIZE} height={LOGO_SIZE} alt={t('common.logo')} />
           </Link>
 
           {!disabledNavbar && (

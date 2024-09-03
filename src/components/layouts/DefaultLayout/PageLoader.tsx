@@ -10,7 +10,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({ loading = false, children, ...r
   }
 
   return (
-    <Center h="100%" mt="xl" {...rest}>
+    <Center mt="xl" {...rest}>
       <Loader />
     </Center>
   );

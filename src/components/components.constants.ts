@@ -3,6 +3,7 @@ export const MIN_TABLE_HEIGHT = 150;
 export const DEFAULT_PAGE_SIZE = 10;
 
 // Icon
+export const LOGO_SIZE = 32;
 export const DEFAULT_ICON_SIZE = 18;
 
 // PAGE HEADER
