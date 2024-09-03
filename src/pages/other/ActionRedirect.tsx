@@ -91,11 +91,11 @@ const ActionRedirect: React.FC = () => {
             });
           })
           .finally(() => {
-            if (isGuest) {
-              navigate(MAIN_ROUTES.LOGIN, { replace: true });
-            } else {
+            if (!isGuest) {
               logout();
             }
+
+            navigate(MAIN_ROUTES.LOGIN, { replace: true });
           });
       } else if (isChangeEmailConfirmRedirect) {
         // TODO: Set your payload
@@ -111,11 +111,11 @@ const ActionRedirect: React.FC = () => {
             });
           })
           .finally(() => {
-            if (isGuest) {
-              navigate(MAIN_ROUTES.LOGIN, { replace: true });
-            } else {
+            if (!isGuest) {
               logout();
             }
+
+            navigate(MAIN_ROUTES.LOGIN, { replace: true });
           });
       } else if (isSetupPasswordRedirect) {
         if (!isGuest) {
