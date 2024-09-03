@@ -30,7 +30,7 @@ const ResetPasswordForm: React.FC = () => {
     initialValues: initialResetPasswordValues,
   });
 
-  useFormErrorHandler(form, resetPasswordError);
+  const { firstErrorFocus } = useFormErrorHandler(form, resetPasswordError);
 
   const handleSubmit = async (values: ResetPasswordFormValues) => {
     //  TODO: Set your payload
@@ -44,7 +44,7 @@ const ResetPasswordForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
       <TextInput
         label={t('user.email')}
         placeholder={t('user.email.placeholder')}

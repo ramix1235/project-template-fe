@@ -84,7 +84,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
     initialValues: isPasswordChange ? initialChangePasswordValues : initialSetupPasswordValues,
   });
 
-  useFormErrorHandler(form, error);
+  const { firstErrorFocus } = useFormErrorHandler(form, error);
 
   const handleSubmit = async (values: SetupPasswordFormValues | ChangePasswordFormValues) => {
     if (isPasswordChange && 'currentPassword' in values) {
@@ -138,7 +138,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
       <Stack>
         {isPasswordChange && (
           <PasswordInput

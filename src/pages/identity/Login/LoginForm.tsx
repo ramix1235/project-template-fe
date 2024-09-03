@@ -1,5 +1,5 @@
 import { Anchor, Group, PasswordInput, Stack, TextInput } from '@mantine/core';
-import { FormErrors, useForm } from '@mantine/form';
+import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ const LoginForm: React.FC = () => {
     initialValues: { ...initialLoginValues, email: email ?? initialLoginValues.email },
   });
 
-  useFormErrorHandler(form, loginError);
+  const { firstErrorFocus } = useFormErrorHandler(form, loginError);
 
   const handleSubmit = async (values: LoginFormValues) => {
     // TODO: Set your payload
@@ -58,14 +58,8 @@ const LoginForm: React.FC = () => {
     dispatch(setAuth({ account: authAccount }));
   };
 
-  const handleValidationFailure = (errors: FormErrors) => {
-    const firstErrorPath = Object.keys(errors)[0];
-
-    form.getInputNode(firstErrorPath)?.focus();
-  };
-
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, handleValidationFailure)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
       <Stack>
         <TextInput
           label={t('user.email')}

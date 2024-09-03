@@ -30,7 +30,7 @@ const ChangeEmailForm: React.FC = () => {
     initialValues: initialChangeEmailValues,
   });
 
-  useFormErrorHandler(form, changeEmailError);
+  const { firstErrorFocus } = useFormErrorHandler(form, changeEmailError);
 
   const handleSubmit = async (values: ChangeEmailFormValues) => {
     // TODO: Set your payload
@@ -45,7 +45,7 @@ const ChangeEmailForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
       <Stack>
         <PasswordInput
           label={t('identity.setupPassword.currentPassword')}

@@ -1,5 +1,5 @@
 import { Anchor, Checkbox, Group, PasswordInput, Stack, Text, TextInput } from '@mantine/core';
-import { FormErrors, useForm } from '@mantine/form';
+import { useForm } from '@mantine/form';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +33,7 @@ const RegisterForm: React.FC = () => {
     initialValues: initialRegisterValues,
   });
 
-  useFormErrorHandler(form, registerError);
+  const { firstErrorFocus } = useFormErrorHandler(form, registerError);
 
   const handleSubmit = async (values: RegisterFormValues) => {
     //  TODO: Set your payload
@@ -49,14 +49,8 @@ const RegisterForm: React.FC = () => {
     showSuccessNotification({ message: t('identity.register.notification.success') });
   };
 
-  const handleValidationFailure = (errors: FormErrors) => {
-    const firstErrorPath = Object.keys(errors)[0];
-
-    form.getInputNode(firstErrorPath)?.focus();
-  };
-
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, handleValidationFailure)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
       <Stack>
         <TextInput
           label={t('user.firstName')}
