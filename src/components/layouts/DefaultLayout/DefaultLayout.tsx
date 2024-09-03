@@ -87,7 +87,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         />
       )}
 
-      {!disabledNavbar && <Navbar />}
+      {!disabledNavbar && <Navbar enabledRemoveScroll={openedBurgerMenu} />}
 
       {!disabled && !disabledPageHeader && <PageHeader />}
 
