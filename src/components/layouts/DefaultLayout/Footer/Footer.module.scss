@@ -1,0 +1,7 @@
+.container {
+  justify-content: end;
+
+  @include smaller-than($mantine-breakpoint-md) {
+    justify-content: center;
+  }
+}

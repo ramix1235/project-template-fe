@@ -17,7 +17,7 @@ const cssVariablesResolver: CSSVariablesResolver = (theme) => ({
   },
   light: {
     '--vite-brand-color': theme.other.viteBrandColor,
-    '--react-brand-color': theme.other.reactBradColor,
+    '--react-brand-color': theme.other.reactBrandColor,
   },
   dark: {
     '--vite-brand-color': theme.other.viteBrandColor,

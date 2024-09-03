@@ -29,7 +29,7 @@ import { showSuccessNotification } from '#/services/notifications';
   - logout if user authorized
   - put params to the route state
   - redirect to the SetupPassword page
-  - show success/error notification about SET password action
+  - show success/error notification about SETUP password action
   - on success redirect to the Login page with pre-populated email field
   link: /action/password-setup?code={code}&email={email}
 

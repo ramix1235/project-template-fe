@@ -1,9 +1,5 @@
 .title {
   font-size: rem(40px);
-
-  @include smaller-than($mantine-breakpoint-md) {
-    font-size: rem(28px);
-  }
 }
 
 .logo {
@@ -15,11 +11,6 @@
 
   &:hover {
     filter: drop-shadow(0 0 #{rem(32px)} var(--vite-brand-color));
-  }
-
-  @include smaller-than($mantine-breakpoint-md) {
-    width: rem(108px);
-    height: rem(108px);
   }
 }
 

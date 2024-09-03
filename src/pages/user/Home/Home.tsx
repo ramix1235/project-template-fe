@@ -4,10 +4,10 @@ import { Anchor, Button, Group, Image, Stack, Text, Title } from '@mantine/core'
 import { clsx } from 'clsx';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { PageLoader } from '#/components/layouts';
+import { PageHeaderToolbar, PageLoader } from '#/components/layouts';
 import { useMockGetCountQuery, useMockPostCountUpdateMutation } from '#/mocks/api';
 
-import HomeTable from './HomeTable';
+import QueryPlayground from './QueryPlayground';
 
 import viteLogo from '/vite.svg';
 import ReactLogo from '#/assets/react.svg?react';
@@ -37,62 +37,68 @@ const Home: React.FC = () => {
   };
 
   return (
-    <PageLoader loading={isGetCountLoading}>
-      <Stack gap="xl">
-        <Stack align="center">
-          <Group>
-            <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-              <Image src={viteLogo} className={classes.logo} alt="Vite" />
-            </a>
+    <>
+      <PageHeaderToolbar>
+        <Text lineClamp={1}>{t('pageHeader.toolbar')}</Text>
+      </PageHeaderToolbar>
 
-            <a href="https://react.dev" target="_blank" rel="noreferrer">
-              <ReactLogo className={clsx(classes.logo, classes.react)} />
-            </a>
-          </Group>
+      <PageLoader loading={isGetCountLoading}>
+        <Stack gap="xl">
+          <Stack align="center">
+            <Group>
+              <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+                <Image src={viteLogo} className={classes.logo} alt="Vite" />
+              </a>
 
-          <Title order={1} className={classes.title}>
-            <Text
-              inherit
-              variant="gradient"
-              component="span"
-              gradient={{ from: 'var(--vite-brand-color)', to: 'var(--react-brand-color)' }}
-            >
-              {t('home.title')}
-            </Text>
-          </Title>
-
-          <Stack p="xl">
-            <Group justify="center">
-              <Button loading={isUpdateCountLoading} variant="light" onClick={handleCountClick}>
-                {t('home.button.title', { count })}
-              </Button>
+              <a href="https://react.dev" target="_blank" rel="noreferrer">
+                <ReactLogo className={clsx(classes.logo, classes.react)} />
+              </a>
             </Group>
 
-            <Text>
+            <Title order={1} className={classes.title}>
+              <Text
+                inherit
+                variant="gradient"
+                component="span"
+                gradient={{ from: 'var(--vite-brand-color)', to: 'var(--react-brand-color)' }}
+              >
+                {t('home.title')}
+              </Text>
+            </Title>
+
+            <Stack p="xl">
+              <Group justify="center">
+                <Button loading={isUpdateCountLoading} variant="light" onClick={handleCountClick}>
+                  {t('home.button.title', { count })}
+                </Button>
+              </Group>
+
+              <Text>
+                <Trans
+                  t={t}
+                  i18nKey="home.edit"
+                  components={{
+                    Code: <code />,
+                  }}
+                />
+              </Text>
+            </Stack>
+
+            <Text c="dimmed">
               <Trans
                 t={t}
-                i18nKey="home.edit"
+                i18nKey="home.dimmed"
                 components={{
-                  Code: <code />,
+                  Anchor: <Anchor target="_blank" />,
                 }}
               />
             </Text>
           </Stack>
 
-          <Text c="dimmed">
-            <Trans
-              t={t}
-              i18nKey="home.dimmed"
-              components={{
-                Anchor: <Anchor target="_blank" />,
-              }}
-            />
-          </Text>
+          <QueryPlayground />
         </Stack>
-
-        <HomeTable />
-      </Stack>
-    </PageLoader>
+      </PageLoader>
+    </>
   );
 };
 

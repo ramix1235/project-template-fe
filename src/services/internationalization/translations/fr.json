@@ -25,6 +25,8 @@
     "navbar.header": "En-tête de la barre de navigation",
     "navbar.footer": "Pied de page de la barre de navigation – toujours en bas",
 
+    "pageHeader.toolbar": "Contenu de la barre d'outils de l'en-tête de page",
+
     "home": "Maison",
     "home.title": "Vite + React",
     "home.button.title": "le nombre est de {{count}}",

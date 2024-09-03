@@ -17,15 +17,11 @@ import { getPageTotal, paginate } from '#/services/pagination';
 const defaultPets: Pet[] = [];
 const defaultTag = 'itc';
 
-const HomeTable = () => {
+const QueryPlayground = () => {
   const { t } = useTranslation();
 
   const [addPet, { isLoading: isAddPetLoading }] = useAddPetMutation();
-  const {
-    data: pets = defaultPets,
-    isLoading: isPetsLoading,
-    isFetching: isPetFetching,
-  } = useFindPetsByTagsQuery({
+  const { data: pets = defaultPets, isFetching: isPetFetching } = useFindPetsByTagsQuery({
     tags: [defaultTag],
   });
 
@@ -84,11 +80,12 @@ const HomeTable = () => {
       </Group>
 
       <DataTable
-        fetching={isPetsLoading || isPetFetching}
+        fetching={isPetFetching}
         minHeight={MIN_TABLE_HEIGHT}
         columns={columns}
         records={records}
         noRecordsText=""
+        loadingText=""
         paginationText={EmptyPaginationText}
         totalRecords={pets.length}
         recordsPerPage={DEFAULT_PAGE_SIZE}
@@ -99,4 +96,4 @@ const HomeTable = () => {
   );
 };
 
-export default HomeTable;
+export default QueryPlayground;

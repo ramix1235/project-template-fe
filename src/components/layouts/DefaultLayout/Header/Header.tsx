@@ -1,5 +1,4 @@
-import { AppShell, AppShellHeaderProps, Burger, ElementProps, Group } from '@mantine/core';
-import { clsx } from 'clsx';
+import { AppShell, AppShellHeaderProps, Burger, ElementProps, Group, Image } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -31,15 +30,15 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <AppShell.Header {...rest}>
       <Group h="100%" justify="space-between" px="md">
-        {!disabledNavbar && (
-          <Burger opened={openedBurgerMenu} onClick={toggleBurgerMenu} hiddenFrom="md" />
-        )}
-        <Link
-          to={MAIN_ROUTES.HOME}
-          className={clsx({ 'mantine-visible-from-md': !disabledNavbar })}
-        >
-          <img src={viteLogo} alt={t('common.logo')} />
-        </Link>
+        <Group gap="xs">
+          <Link to={MAIN_ROUTES.HOME}>
+            <Image src={viteLogo} alt={t('common.logo')} />
+          </Link>
+
+          {!disabledNavbar && (
+            <Burger opened={openedBurgerMenu} onClick={toggleBurgerMenu} hiddenFrom="md" />
+          )}
+        </Group>
 
         {!isGuest && <LogoutButton />}
       </Group>

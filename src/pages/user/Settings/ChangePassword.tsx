@@ -1,11 +1,10 @@
 import { Container, Text } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
+import { SetupPasswordFormType, SetupPasswordForm } from '#/components/forms';
 import { PageHeaderToolbar } from '#/components/layouts';
 
-import ChangeEmailForm from './ChangeEmailForm';
-
-const ChangeEmail: React.FC = () => {
+const ChangePassword: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -15,10 +14,10 @@ const ChangeEmail: React.FC = () => {
       </PageHeaderToolbar>
 
       <Container size="xs" p={0}>
-        <ChangeEmailForm />
+        <SetupPasswordForm type={SetupPasswordFormType.Change} />
       </Container>
     </>
   );
 };
 
-export default ChangeEmail;
+export default ChangePassword;

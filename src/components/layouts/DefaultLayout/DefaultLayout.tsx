@@ -10,7 +10,7 @@ import Footer from './Footer';
 import Header from './Header';
 import Main from './Main';
 import Navbar from './Navbar';
-import PageHeader from './PageHeader';
+import { PageHeader } from './PageHeader';
 
 import classes from './DefaultLayout.module.scss';
 
@@ -32,6 +32,7 @@ const navbarConfig = {
 const asideConfig = {
   width: 300,
   breakpoint: 'md',
+  collapsed: { mobile: true },
 };
 const footerConfig = { height: 60 };
 
@@ -73,7 +74,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
         ...navbarConfig,
         collapsed: { mobile: !openedBurgerMenu },
       }}
-      aside={{ ...asideConfig, collapsed: { mobile: true } }}
+      aside={asideConfig}
       footer={footerConfig}
       disabled={disabled}
       {...props}

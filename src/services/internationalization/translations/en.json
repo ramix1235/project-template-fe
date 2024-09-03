@@ -25,6 +25,8 @@
     "navbar.header": "Navbar header",
     "navbar.footer": "Navbar footer – always at the bottom",
 
+    "pageHeader.toolbar": "Page header toolbar content",
+
     "home": "Home",
     "home.title": "Vite + React",
     "home.button.title": "count is {{count}}",
