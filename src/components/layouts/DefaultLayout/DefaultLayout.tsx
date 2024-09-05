@@ -1,7 +1,15 @@
 import { useEffect } from 'react';
 
-import { AppShell, AppShellProps, ElementProps } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import {
+  AppShell,
+  AppShellAsideConfiguration,
+  AppShellFooterConfiguration,
+  AppShellHeaderConfiguration,
+  AppShellNavbarConfiguration,
+  AppShellProps,
+  useMantineTheme,
+} from '@mantine/core';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { clsx } from 'clsx';
 import { useLocation } from 'react-router-dom';
 
@@ -14,7 +22,19 @@ import { PageHeader } from './PageHeader';
 
 import classes from './DefaultLayout.module.scss';
 
-interface DefaultLayoutProps extends AppShellProps, ElementProps<'div', keyof AppShellProps> {
+const headerConfig: AppShellHeaderConfiguration = { height: 60 };
+const navbarConfig: AppShellNavbarConfiguration = {
+  width: 300,
+  breakpoint: 'md',
+};
+const asideConfig: AppShellAsideConfiguration = {
+  width: 300,
+  breakpoint: 'md',
+  collapsed: { mobile: true },
+};
+const footerConfig: AppShellFooterConfiguration = { height: 60 };
+
+export interface DefaultLayoutProps extends AppShellProps {
   disabledHeader?: boolean;
   disabledPageHeader?: boolean;
   disabledNavbar?: boolean;
@@ -23,18 +43,6 @@ interface DefaultLayoutProps extends AppShellProps, ElementProps<'div', keyof Ap
   centered?: boolean;
   pageHeader?: React.ReactNode | null;
 }
-
-const headerConfig = { height: 60 };
-const navbarConfig = {
-  width: 300,
-  breakpoint: 'md',
-};
-const asideConfig = {
-  width: 300,
-  breakpoint: 'md',
-  collapsed: { mobile: true },
-};
-const footerConfig = { height: 60 };
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   children,
@@ -49,8 +57,12 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 }) => {
   const location = useLocation();
 
+  const theme = useMantineTheme();
+  const largerThanMd = useMediaQuery(`(min-width: ${theme.breakpoints.md})`);
+
   const [openedBurgerMenu, { toggle: toggleBurgerMenu }] = useDisclosure();
 
+  // Close Navbar on location changing
   useEffect(() => {
     if (openedBurgerMenu) {
       toggleBurgerMenu();
@@ -58,6 +70,13 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
+
+  // Close Navbar on resize starting from md
+  useEffect(() => {
+    if (openedBurgerMenu && largerThanMd) {
+      toggleBurgerMenu();
+    }
+  }, [openedBurgerMenu, largerThanMd, toggleBurgerMenu]);
 
   return (
     <AppShell

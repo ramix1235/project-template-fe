@@ -8,12 +8,6 @@ import {
   REQUIRED_LENGTH,
 } from '#/services/auth';
 
-export enum SetupPasswordFormType {
-  Setup = 'setup',
-  Change = 'change',
-  Reset = 'reset',
-}
-
 export type ChangePasswordFormValues = {
   currentPassword: string;
   password: string;

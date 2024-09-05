@@ -1,3 +1,7 @@
+.root {
+  transition-property: none; // Workaround to fix elements jumping when opening/closing Navbar (enabledRemoveScroll = true) with page scrollbar
+}
+
 .container {
   justify-content: end;
 

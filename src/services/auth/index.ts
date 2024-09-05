@@ -1,4 +1,4 @@
-export * from './authAccount';
+export * from './auth.account';
 export * from './auth.constants';
 export * from './auth.slice';
 export * from './auth.selectors';

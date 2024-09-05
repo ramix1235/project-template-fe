@@ -17,7 +17,7 @@ const initialResetPasswordValues: ResetPasswordFormValues = {
   email: '',
 };
 
-const ResetPasswordForm: React.FC = () => {
+const ResetPasswordForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
   const [resetPassword, { isLoading: isResetPasswordLoading, error: resetPasswordError }] =
     useMockPostResetPasswordRequestMutation(); //  TODO: Set your hook
 
@@ -44,7 +44,7 @@ const ResetPasswordForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)} {...props}>
       <TextInput
         label={t('user.email')}
         placeholder={t('user.email.placeholder')}

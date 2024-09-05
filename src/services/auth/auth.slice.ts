@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AuthAccount, clearAuthAccount, getAuthAccount, setAuthAccount } from './authAccount';
+import { AuthAccount, clearAuthAccount, getAuthAccount, setAuthAccount } from './auth.account';
 
 export interface AuthState {
   authAccount: AuthAccount;

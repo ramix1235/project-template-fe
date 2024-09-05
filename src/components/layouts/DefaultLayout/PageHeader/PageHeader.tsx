@@ -1,4 +1,4 @@
-import { ElementProps, Group, Stack, GroupProps } from '@mantine/core';
+import { Group, Stack, GroupProps } from '@mantine/core';
 import { clsx } from 'clsx';
 
 import { PAGE_HEADER_TOOLBAR_ID } from '#/components';
@@ -9,7 +9,7 @@ import PageTitle from './PageTitle';
 
 import classes from './PageHeader.module.scss';
 
-interface PageHeaderProps extends GroupProps, ElementProps<'div', keyof GroupProps> {
+interface PageHeaderProps extends GroupProps {
   disabled?: boolean;
   withBorder?: boolean;
 }

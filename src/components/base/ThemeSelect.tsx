@@ -1,15 +1,7 @@
-import {
-  ElementProps,
-  MantineColorScheme,
-  Select,
-  SelectProps,
-  useMantineColorScheme,
-} from '@mantine/core';
+import { MantineColorScheme, Select, SelectProps, useMantineColorScheme } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
-interface ThemeSelectProps extends SelectProps, ElementProps<'input', keyof SelectProps> {}
-
-const ThemeSelect: React.FC<ThemeSelectProps> = (props) => {
+const ThemeSelect: React.FC<SelectProps> = (props) => {
   const { t } = useTranslation();
   const { setColorScheme, colorScheme } = useMantineColorScheme();
 

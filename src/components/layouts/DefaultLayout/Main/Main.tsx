@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { AppShell, AppShellMainProps, ElementProps } from '@mantine/core';
+import { AppShell, AppShellMainProps } from '@mantine/core';
 import { clsx } from 'clsx';
 import { useLocation, useMatches } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import classes from './Main.module.scss';
   About useMatches: https://reactrouter.com/en/main/hooks/use-matches
 */
 
-interface MainProps extends AppShellMainProps, ElementProps<'main', keyof AppShellMainProps> {
+interface MainProps extends AppShellMainProps {
   centered?: boolean;
 }
 
@@ -28,6 +28,7 @@ const Main: React.FC<MainProps> = ({ children, className, centered = false, ...r
   return (
     <AppShell.Main
       className={clsx(
+        classes.root,
         // @ts-ignore
         { [classes.centered]: currentRoute?.handle?.centered ?? centered },
         className,

@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
 
-import { Anchor, Button, Group, Image, Stack, Text, Title } from '@mantine/core';
+import { Anchor, Button, Code, Group, Image, Stack, Text, Title } from '@mantine/core';
 import { clsx } from 'clsx';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -48,13 +48,13 @@ const Home: React.FC = () => {
         <Stack gap="xl">
           <Stack align="center">
             <Group>
-              <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-                <Image src={viteLogo} className={classes.logo} alt="Vite" />
-              </a>
+              <Anchor href="https://vitejs.dev" target="_blank">
+                <Image src={viteLogo} className={classes.logo} alt={t('common.vite')} />
+              </Anchor>
 
-              <a href="https://react.dev" target="_blank" rel="noreferrer">
+              <Anchor href="https://react.dev" target="_blank">
                 <ReactLogo className={clsx(classes.logo, classes.react)} />
-              </a>
+              </Anchor>
             </Group>
 
             <Title order={1} className={classes.title}>
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
                 component="span"
                 gradient={{ from: 'var(--vite-brand-color)', to: 'var(--react-brand-color)' }}
               >
-                {t('home.title')}
+                {t('common.vite')} + {t('common.react')}
               </Text>
             </Title>
 
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                   t={t}
                   i18nKey="home.edit"
                   components={{
-                    Code: <code />,
+                    Code: <Code />,
                   }}
                 />
               </Text>

@@ -1,8 +1,8 @@
 import { Anchor, Checkbox, Group, PasswordInput, Stack, Text, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
+import { AnchorLink } from '#/components/base';
 import { SubmitButton } from '#/components/forms';
 import { TERMS_AND_CONDITIONS_LINK } from '#/constants/links';
 import { MockPostRegisterApiArg, useMockPostRegisterMutation } from '#/mocks/api';
@@ -20,7 +20,7 @@ const initialRegisterValues: RegisterFormValues = {
   terms: false,
 };
 
-const RegisterForm: React.FC = () => {
+const RegisterForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
   const [register, { isLoading: isRegisterLoading, error: registerError }] =
     useMockPostRegisterMutation(); //  TODO: Set your hook
 
@@ -50,7 +50,7 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)} {...props}>
       <Stack>
         <TextInput
           label={t('user.firstName')}
@@ -95,18 +95,18 @@ const RegisterForm: React.FC = () => {
 
       <Stack mt="xl" gap="xs">
         <Group>
-          <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
+          <AnchorLink size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
             {t('identity.link.forgotPassword')}
-          </Anchor>
+          </AnchorLink>
         </Group>
 
         <SubmitButton loading={isRegisterLoading}>{t('identity.register')}</SubmitButton>
       </Stack>
 
       <Group mt="xl" justify="center">
-        <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.LOGIN}>
+        <AnchorLink size="xs" c="dimmed" to={MAIN_ROUTES.LOGIN}>
           {t('identity.register.link.login')}
-        </Anchor>
+        </AnchorLink>
       </Group>
     </form>
   );

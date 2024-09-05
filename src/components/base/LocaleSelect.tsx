@@ -1,11 +1,9 @@
-import { ElementProps, Select, SelectProps } from '@mantine/core';
+import { Select, SelectProps } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
 import { Locale, setLocale } from '#/services/internationalization';
 
-interface LocaleSelectProps extends SelectProps, ElementProps<'input', keyof SelectProps> {}
-
-const LocaleSelect: React.FC<LocaleSelectProps> = (props) => {
+const LocaleSelect: React.FC<SelectProps> = (props) => {
   const { t, i18n } = useTranslation();
 
   const locales = [

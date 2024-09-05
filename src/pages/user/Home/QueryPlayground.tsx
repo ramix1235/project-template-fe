@@ -1,4 +1,4 @@
-import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
+import { Anchor, Button, Group, Stack, StackProps, Text } from '@mantine/core';
 import { usePagination } from '@mantine/hooks';
 import { DataTable, DataTableColumn } from 'mantine-datatable';
 import { Trans, useTranslation } from 'react-i18next';
@@ -17,7 +17,7 @@ import { getPageTotal, paginate } from '#/services/pagination';
 const defaultPets: Pet[] = [];
 const defaultTag = 'itc';
 
-const QueryPlayground = () => {
+const QueryPlayground: React.FC<StackProps> = (props) => {
   const { t } = useTranslation();
 
   const [addPet, { isLoading: isAddPetLoading }] = useAddPetMutation();
@@ -62,7 +62,7 @@ const QueryPlayground = () => {
   };
 
   return (
-    <Stack>
+    <Stack {...props}>
       <Text ta="center" size="xl">
         <Trans
           t={t}

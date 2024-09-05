@@ -17,7 +17,7 @@ const initialChangeEmailValues: ChangeEmailFormValues = {
   password: '',
 };
 
-const ChangeEmailForm: React.FC = () => {
+const ChangeEmailForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
   const [changeEmail, { isLoading: isChangeEmailLoading, error: changeEmailError }] =
     useMockPostChangeEmailRequestMutation(); // TODO: Set your hook
 
@@ -45,7 +45,7 @@ const ChangeEmailForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)} {...props}>
       <Stack>
         <PasswordInput
           label={t('identity.setupPassword.currentPassword')}

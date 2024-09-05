@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 
-import { DefaultLayout } from '#/components/layouts';
+import { DefaultLayout, DefaultLayoutProps } from '#/components/layouts';
 
-const UserLayout: React.FC = () => {
+const UserLayout: React.FC<DefaultLayoutProps> = (props) => {
   return (
-    <DefaultLayout>
+    <DefaultLayout {...props}>
       <Outlet />
     </DefaultLayout>
   );

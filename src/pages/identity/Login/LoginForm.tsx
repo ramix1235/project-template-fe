@@ -1,8 +1,9 @@
-import { Anchor, Group, PasswordInput, Stack, TextInput } from '@mantine/core';
+import { Group, PasswordInput, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
+import { AnchorLink } from '#/components/base';
 import { SubmitButton } from '#/components/forms';
 import { MockPostLoginApiArg, useMockPostLoginMutation } from '#/mocks/api';
 import { AuthAccount, setAuth } from '#/services/auth';
@@ -21,7 +22,7 @@ const initialLoginValues: LoginFormValues = {
   password: '',
 };
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
   const [login, { isLoading: isLoginLoading, error: loginError }] = useMockPostLoginMutation(); // TODO: Set your hook
 
   const { t } = useTranslation();
@@ -59,7 +60,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)} {...props}>
       <Stack>
         <TextInput
           label={t('user.email')}
@@ -76,18 +77,18 @@ const LoginForm: React.FC = () => {
 
       <Stack mt="xl" gap="xs">
         <Group>
-          <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
+          <AnchorLink size="xs" c="dimmed" to={MAIN_ROUTES.RESET_PASSWORD}>
             {t('identity.link.forgotPassword')}
-          </Anchor>
+          </AnchorLink>
         </Group>
 
         <SubmitButton loading={isLoginLoading}>{t('identity.login')}</SubmitButton>
       </Stack>
 
       <Group mt="xl" justify="center">
-        <Anchor component={Link} size="xs" c="dimmed" to={MAIN_ROUTES.REGISTER}>
+        <AnchorLink size="xs" c="dimmed" to={MAIN_ROUTES.REGISTER}>
           {t('identity.login.link.register')}
-        </Anchor>
+        </AnchorLink>
       </Group>
     </form>
   );

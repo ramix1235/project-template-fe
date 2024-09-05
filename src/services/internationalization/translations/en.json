@@ -19,6 +19,8 @@
     "common.send": "Send",
     "common.google": "Google",
     "common.facebook": "Facebook",
+    "common.vite": "Vite",
+    "common.react": "React",
 
     "aside.title": "Aside Content",
 
@@ -28,7 +30,6 @@
     "pageHeader.toolbar": "Page header toolbar content",
 
     "home": "Home",
-    "home.title": "Vite + React",
     "home.button.title": "count is {{count}}",
     "home.edit": "Edit <Code>src/pages/user/Home</Code> and save to test HMR",
     "home.dimmed": "Click on the <Anchor href=\"https://vitejs.dev\">Vite</Anchor> and <Anchor href=\"https://react.dev\">React</Anchor> logos to learn more",

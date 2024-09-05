@@ -16,9 +16,9 @@ import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
 import { showSuccessNotification } from '#/services/notifications';
 
+import { SetupPasswordFormType } from './SetupPasswordForm.constants';
 import {
   ChangePasswordFormValues,
-  SetupPasswordFormType,
   getSchema,
   SetupPasswordFormValues,
 } from './SetupPasswordForm.schema';
@@ -38,7 +38,7 @@ interface LocationState {
   type?: SetupPasswordFormType;
 }
 
-interface SetupPasswordFormProps {
+interface SetupPasswordFormProps extends React.ComponentPropsWithoutRef<'form'> {
   type?: SetupPasswordFormType;
 }
 
@@ -54,6 +54,7 @@ const initialChangePasswordValues: ChangePasswordFormValues = {
 
 const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   type = SetupPasswordFormType.Setup,
+  ...props
 }) => {
   const [setupPassword, { isLoading: isSetupPasswordLoading, error: setupPasswordError }] =
     useMockPostSetupPasswordMutation(); // TODO: Set your hook
@@ -138,7 +139,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)}>
+    <form onSubmit={form.onSubmit(handleSubmit, firstErrorFocus)} {...props}>
       <Stack>
         {isPasswordChange && (
           <PasswordInput

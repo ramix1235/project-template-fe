@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { ElementProps, Title, TitleProps } from '@mantine/core';
+import { Title, TitleProps } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useMatches } from 'react-router-dom';
 
@@ -10,12 +10,10 @@ import { useLocation, useMatches } from 'react-router-dom';
   About useMatches: https://reactrouter.com/en/main/hooks/use-matches
 */
 
-interface PageTitleProps extends TitleProps, ElementProps<'h1', keyof TitleProps> {}
-
 // Normalizer removes slashes at the end of pathname
 const normalizePathname = (pathname: string) => pathname.replace(/\/+$/, '');
 
-const PageTitle: React.FC<PageTitleProps> = (props) => {
+const PageTitle: React.FC<TitleProps> = (props) => {
   const { t } = useTranslation();
 
   const matches = useMatches();
