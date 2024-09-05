@@ -9,8 +9,8 @@ interface FacebookButtonProps extends ButtonProps, ElementProps<'button', keyof 
 const FacebookButton: React.FC<FacebookButtonProps> = (props) => {
   return (
     <Button
-      leftSection={<FacebookLogo width={DEFAULT_ICON_SIZE} height={DEFAULT_ICON_SIZE} />}
       variant="default"
+      leftSection={<FacebookLogo width={DEFAULT_ICON_SIZE} height={DEFAULT_ICON_SIZE} />}
       {...props}
     />
   );

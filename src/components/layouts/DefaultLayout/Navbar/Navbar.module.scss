@@ -1,10 +1,14 @@
 .header {
+  padding: var(--mantine-spacing-md);
+
   &[data-with-border] {
     border-bottom: 1px solid var(--app-shell-border-color);
   }
 }
 
 .footer {
+  padding: var(--mantine-spacing-md);
+
   &[data-with-border] {
     border-top: 1px solid var(--app-shell-border-color);
   }

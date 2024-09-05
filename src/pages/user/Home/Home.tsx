@@ -47,7 +47,7 @@ const Home: React.FC = () => {
       <PageLoader loading={isGetCountLoading}>
         <Stack gap="xl">
           <Stack align="center">
-            <Group>
+            <Group justify="center">
               <Anchor href="https://vitejs.dev" target="_blank">
                 <Image src={viteLogo} className={classes.logo} alt={t('common.vite')} />
               </Anchor>
@@ -60,8 +60,8 @@ const Home: React.FC = () => {
             <Title order={1} className={classes.title}>
               <Text
                 inherit
-                variant="gradient"
                 component="span"
+                variant="gradient"
                 gradient={{ from: 'var(--vite-brand-color)', to: 'var(--react-brand-color)' }}
               >
                 {t('common.vite')} + {t('common.react')}
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
 
             <Stack p="xl">
               <Group justify="center">
-                <Button loading={isUpdateCountLoading} variant="light" onClick={handleCountClick}>
+                <Button variant="light" loading={isUpdateCountLoading} onClick={handleCountClick}>
                   {t('home.button.title', { count })}
                 </Button>
               </Group>

@@ -4,3 +4,4 @@ export { default as ButtonLink } from './ButtonLink';
 export type { ButtonLinkProps } from './ButtonLink';
 export { default as AnchorLink } from './AnchorLink';
 export type { AnchorLinkProps } from './AnchorLink';
+export { default as BackButton } from './BackButton';

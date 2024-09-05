@@ -1,4 +1,11 @@
-import { AppShell, AppShellNavbarProps, RemoveScroll, ScrollArea, Text } from '@mantine/core';
+import {
+  AppShell,
+  AppShellNavbarProps,
+  RemoveScroll,
+  ScrollArea,
+  Stack,
+  Text,
+} from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 
 import { MAIN_ROUTES } from '#/services/navigation';
@@ -15,7 +22,7 @@ interface NavbarProps extends AppShellNavbarProps {
 const Navbar: React.FC<NavbarProps> = ({
   enabledRemoveScroll = false,
   withBorder = true,
-  ...rest
+  ...props
 }) => {
   const { t } = useTranslation();
 
@@ -34,30 +41,32 @@ const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <RemoveScroll enabled={enabledRemoveScroll}>
-      <AppShell.Navbar withBorder={withBorder} {...rest}>
-        <Text p="md" className={classes.header} mod={{ 'data-with-border': withBorder }}>
+      <AppShell.Navbar withBorder={withBorder} {...props}>
+        <Text mod={{ 'data-with-border': withBorder }} className={classes.header}>
           {t('navbar.header')}
         </Text>
 
-        <AppShell.Section component={ScrollArea} px="md" grow>
-          {items.map(({ label, to, permissions }) => {
-            const element = <ButtonNavLink to={to}>{label}</ButtonNavLink>;
-            const subject = permissions[0];
-            const action = permissions[1];
+        <AppShell.Section component={ScrollArea} grow>
+          <Stack p="md">
+            {items.map(({ label, to, permissions }) => {
+              const element = <ButtonNavLink to={to}>{label}</ButtonNavLink>;
+              const subject = permissions[0];
+              const action = permissions[1];
 
-            if (permissions?.length > 0) {
-              return (
-                <Can key={to} I={action} a={subject}>
-                  {element}
-                </Can>
-              );
-            }
+              if (permissions?.length > 0) {
+                return (
+                  <Can key={to} I={action} a={subject}>
+                    {element}
+                  </Can>
+                );
+              }
 
-            return element;
-          })}
+              return element;
+            })}
+          </Stack>
         </AppShell.Section>
 
-        <Text p="md" className={classes.footer} mod={{ 'data-with-border': withBorder }}>
+        <Text mod={{ 'data-with-border': withBorder }} className={classes.footer}>
           {t('navbar.footer')}
         </Text>
       </AppShell.Navbar>

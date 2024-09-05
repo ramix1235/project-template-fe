@@ -8,7 +8,7 @@ import classes from './Footer.module.scss';
 const Footer: React.FC<AppShellFooterProps> = ({ className, ...props }) => {
   return (
     <AppShell.Footer className={clsx(classes.root, className)} {...props}>
-      <Group wrap="nowrap" h="100%" px="md" className={classes.container}>
+      <Group h="100%" wrap="nowrap" className={classes.container}>
         <ThemeSelect size="xs" />
         <LocaleSelect size="xs" />
       </Group>

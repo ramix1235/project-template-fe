@@ -8,7 +8,7 @@ const SetupPassword: React.FC = () => {
 
   return (
     <>
-      <Text size="lg" fw="bold" mb="md">
+      <Text mb="md" size="lg" fw="bold">
         {t('identity.setupPassword')}
       </Text>
 

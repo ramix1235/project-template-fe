@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Text size="lg" fw="bold" mb="md">
+      <Text mb="md" size="lg" fw="bold">
         {t('identity.title', { type: t('identity.login') })}
       </Text>
 
@@ -19,7 +19,7 @@ const Login: React.FC = () => {
         <FacebookButton radius="xl">{t('common.facebook')}</FacebookButton>
       </Group>
 
-      <Divider label={t('identity.orEmail')} labelPosition="center" my="lg" />
+      <Divider my="lg" label={t('identity.orEmail')} labelPosition="center" />
 
       <LoginForm />
     </>

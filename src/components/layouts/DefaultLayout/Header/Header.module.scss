@@ -1,3 +1,4 @@
 .root {
+  padding: 0 var(--mantine-spacing-md);
   transition-property: none; // Workaround to fix elements jumping when opening/closing Navbar (enabledRemoveScroll = true) with page scrollbar
 }

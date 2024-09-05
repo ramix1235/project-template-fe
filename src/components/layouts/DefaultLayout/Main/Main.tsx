@@ -16,7 +16,7 @@ interface MainProps extends AppShellMainProps {
   centered?: boolean;
 }
 
-const Main: React.FC<MainProps> = ({ children, className, centered = false, ...rest }) => {
+const Main: React.FC<MainProps> = ({ children, className, centered = false, ...props }) => {
   const matches = useMatches();
   const location = useLocation();
 
@@ -33,7 +33,7 @@ const Main: React.FC<MainProps> = ({ children, className, centered = false, ...r
         { [classes.centered]: currentRoute?.handle?.centered ?? centered },
         className,
       )}
-      {...rest}
+      {...props}
     >
       {children}
     </AppShell.Main>

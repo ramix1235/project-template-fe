@@ -132,6 +132,7 @@ const router = createBrowserRouter([
   },
   {
     path: MAIN_ROUTES.ACTION_REDIRECT,
+    errorElement: <ErrorBoundary />,
     async lazy() {
       const { ActionRedirect } = await import('#/pages/other');
 
@@ -140,6 +141,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
+    errorElement: <ErrorBoundary />,
     element: <NotFound />,
   },
 ]);

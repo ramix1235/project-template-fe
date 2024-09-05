@@ -2,13 +2,13 @@ import { Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
 
-import { BackButton, SubmitButton } from '#/components/forms';
+import { BackButton } from '#/components/base';
+import { SubmitButton } from '#/components/forms';
 import {
   MockPostResetPasswordRequestApiArg,
   useMockPostResetPasswordRequestMutation,
 } from '#/mocks/api';
 import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
-import { MAIN_ROUTES } from '#/services/navigation';
 import { showSuccessNotification } from '#/services/notifications';
 
 import { getSchema, ResetPasswordFormValues } from './ResetPasswordForm.schema';
@@ -51,8 +51,8 @@ const ResetPasswordForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (pro
         {...form.getInputProps('email')}
       />
 
-      <Group grow mt="xl">
-        <BackButton to={MAIN_ROUTES.LOGIN} />
+      <Group mt="xl" grow>
+        <BackButton />
         <SubmitButton loading={isResetPasswordLoading} />
       </Group>
     </form>

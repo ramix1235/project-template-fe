@@ -2,6 +2,8 @@
   position: fixed;
   top: var(--app-shell-header-offset, 0);
   z-index: var(--mantine-z-index-app);
+  flex-wrap: nowrap;
+  justify-content: space-between;
   width: 100%;
   height: var(--page-header-height);
   padding-inline: calc(var(--app-shell-navbar-offset, 0rem) + var(--app-shell-padding))

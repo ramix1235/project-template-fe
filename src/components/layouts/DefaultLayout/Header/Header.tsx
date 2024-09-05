@@ -2,7 +2,7 @@ import { AppShell, AppShellHeaderProps, Burger, Group, Image } from '@mantine/co
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { LOGO_SIZE } from '#/components';
+import { HEADER_LOGO_SIZE } from '#/components';
 import { AnchorLink } from '#/components/base';
 import { useAuth } from '#/services/auth';
 import { MAIN_ROUTES } from '#/services/navigation';
@@ -24,22 +24,27 @@ const Header: React.FC<HeaderProps> = ({
   disabledNavbar = false,
   openedBurgerMenu,
   toggleBurgerMenu,
-  ...rest
+  ...props
 }) => {
   const { t } = useTranslation();
 
   const { isGuest } = useAuth();
 
   return (
-    <AppShell.Header className={clsx(classes.root, className)} {...rest}>
-      <Group wrap="nowrap" h="100%" justify="space-between" px="md">
-        <Group wrap="nowrap" gap="xs">
+    <AppShell.Header className={clsx(classes.root, className)} {...props}>
+      <Group h="100%" justify="space-between" wrap="nowrap">
+        <Group gap="xs" wrap="nowrap">
           <AnchorLink to={MAIN_ROUTES.HOME}>
-            <Image src={viteLogo} width={LOGO_SIZE} height={LOGO_SIZE} alt={t('common.logo')} />
+            <Image
+              src={viteLogo}
+              width={HEADER_LOGO_SIZE}
+              height={HEADER_LOGO_SIZE}
+              alt={t('common.logo')}
+            />
           </AnchorLink>
 
           {!disabledNavbar && (
-            <Burger opened={openedBurgerMenu} onClick={toggleBurgerMenu} hiddenFrom="md" />
+            <Burger hiddenFrom="md" opened={openedBurgerMenu} onClick={toggleBurgerMenu} />
           )}
         </Group>
 

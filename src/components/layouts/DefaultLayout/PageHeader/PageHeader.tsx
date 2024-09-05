@@ -14,14 +14,12 @@ interface PageHeaderProps extends GroupProps {
   withBorder?: boolean;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ className, withBorder = true, ...rest }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ className, withBorder = true, ...props }) => {
   return (
     <Group
-      wrap="nowrap"
-      justify="space-between"
-      className={clsx(classes.root, className)}
       mod={{ 'data-with-border': withBorder }}
-      {...rest}
+      className={clsx(classes.root, className)}
+      {...props}
     >
       <Stack gap={0}>
         <Group wrap="nowrap">

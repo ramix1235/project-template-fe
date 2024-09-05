@@ -8,7 +8,7 @@ const Aside: React.FC<AppShellAsideProps> = ({ className, ...props }) => {
   const { t } = useTranslation();
 
   return (
-    <AppShell.Aside p="md" className={clsx(classes.root, className)} {...props}>
+    <AppShell.Aside className={clsx(classes.root, className)} {...props}>
       {t('aside.title')}
     </AppShell.Aside>
   );

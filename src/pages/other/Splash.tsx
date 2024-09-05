@@ -5,7 +5,7 @@ import { DefaultLayout } from '#/components/layouts';
 const Splash: React.FC = () => {
   return (
     <DefaultLayout disabled centered>
-      <Loader />
+      <Loader size="lg" />
     </DefaultLayout>
   );
 };

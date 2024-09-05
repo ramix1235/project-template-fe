@@ -162,7 +162,7 @@ const SetupPasswordForm: React.FC<SetupPasswordFormProps> = ({
         />
       </Stack>
 
-      <SubmitButton fullWidth mt="xl" loading={isLoading} />
+      <SubmitButton mt="xl" fullWidth loading={isLoading} />
     </form>
   );
 };

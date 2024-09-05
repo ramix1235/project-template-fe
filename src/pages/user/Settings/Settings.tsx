@@ -19,7 +19,7 @@ const Settings: React.FC = () => {
   ];
 
   return (
-    <Container flex={1} size="xs" p={0}>
+    <Container p={0} size="xs" flex={1}>
       <Stack>
         {items.map(({ label, to }) => (
           <ButtonLink key={to} fullWidth variant="light" to={to}>

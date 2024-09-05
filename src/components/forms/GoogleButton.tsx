@@ -9,8 +9,8 @@ interface GoogleButtonProps extends ButtonProps, ElementProps<'button', keyof Bu
 const GoogleButton: React.FC<GoogleButtonProps> = (props) => {
   return (
     <Button
-      leftSection={<GoogleLogo width={DEFAULT_ICON_SIZE} height={DEFAULT_ICON_SIZE} />}
       variant="default"
+      leftSection={<GoogleLogo width={DEFAULT_ICON_SIZE} height={DEFAULT_ICON_SIZE} />}
       {...props}
     />
   );

@@ -11,24 +11,24 @@ interface ButtonNavLinkProps
   extends UnstyledButtonProps,
     Omit<NavLinkProps, keyof UnstyledButtonProps> {}
 
-const ButtonNavLinkRoot: React.FC<ButtonNavLinkProps> = ({ className, style, ...rest }) => {
+const ButtonNavLinkRoot: React.FC<ButtonNavLinkProps> = ({ className, style, ...props }) => {
   const getClassName = ({ isActive }: NavLinkRenderProps) => {
-    return clsx(classes.nav_link, { [classes.active]: isActive }, className);
+    return clsx({ [classes.active]: isActive }, className);
   };
 
-  return <NavLink className={getClassName} style={style} {...rest} />;
+  return <NavLink className={getClassName} style={style} {...props} />;
 };
 
-const ButtonNavLink: React.FC<ButtonNavLinkProps> = ({ children, ...rest }) => {
+const ButtonNavLink: React.FC<ButtonNavLinkProps> = ({ children, ...props }) => {
   return (
     <Button
       component={NavLink}
       renderRoot={ButtonNavLinkRoot}
-      fullWidth
+      variant="light"
       px="xs"
       justify="start"
-      variant="light"
-      {...rest}
+      fullWidth
+      {...props}
     >
       {children}
     </Button>

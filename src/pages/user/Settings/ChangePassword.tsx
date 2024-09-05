@@ -15,7 +15,7 @@ const ChangePassword: React.FC = () => {
         </Text>
       </PageHeaderToolbar>
 
-      <Container size="xs" p={0}>
+      <Container p={0} size="xs">
         <SetupPasswordForm type={SetupPasswordFormType.Change} />
       </Container>
     </>

@@ -21,11 +21,11 @@ export const showErrorNotification = (error: unknown, notificationData?: Notific
 };
 
 export const showSuccessNotification = (notificationData: NotificationData) => {
-  const { classNames, ...rest } = notificationData;
+  const { classNames, ...restNotificationData } = notificationData;
 
   return notifications.show({
     color: 'green',
     classNames: classNames ? { ...classes, ...classNames } : classes,
-    ...rest,
+    ...restNotificationData,
   });
 };

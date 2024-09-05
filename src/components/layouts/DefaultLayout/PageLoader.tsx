@@ -4,14 +4,14 @@ interface PageLoaderProps extends CenterProps, ElementProps<'div', keyof CenterP
   loading?: boolean;
 }
 
-const PageLoader: React.FC<PageLoaderProps> = ({ loading = false, children, ...rest }) => {
+const PageLoader: React.FC<PageLoaderProps> = ({ loading = false, children, ...props }) => {
   if (!loading) {
     return children;
   }
 
   return (
-    <Center mt="xl" {...rest}>
-      <Loader />
+    <Center mt="xl" {...props}>
+      <Loader size="lg" />
     </Center>
   );
 };
