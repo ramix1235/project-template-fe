@@ -60,7 +60,7 @@ const ActionRedirect: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isGuest, logout } = useAuth();
+  const { isGuest, authLogout } = useAuth();
 
   const resolvedPath = useResolvedPath('.');
 
@@ -92,7 +92,7 @@ const ActionRedirect: React.FC = () => {
           })
           .finally(() => {
             if (!isGuest) {
-              logout();
+              authLogout();
             }
 
             navigate(MAIN_ROUTES.LOGIN, { replace: true });
@@ -112,14 +112,14 @@ const ActionRedirect: React.FC = () => {
           })
           .finally(() => {
             if (!isGuest) {
-              logout();
+              authLogout();
             }
 
             navigate(MAIN_ROUTES.LOGIN, { replace: true });
           });
       } else if (isSetupPasswordRedirect) {
         if (!isGuest) {
-          logout();
+          authLogout();
         }
 
         navigate(MAIN_ROUTES.SETUP_PASSWORD, {
@@ -142,7 +142,7 @@ const ActionRedirect: React.FC = () => {
     email,
     type,
     navigate,
-    logout,
+    authLogout,
     activateAccount,
     changeEmail,
   ]);

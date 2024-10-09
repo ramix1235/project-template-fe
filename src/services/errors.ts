@@ -1,13 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 // About safe error handling: https://redux-toolkit.js.org/rtk-query/usage-with-typescript#type-safe-error-handling
 
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-import {
-  MockedInvalidRequestResponse,
-  MockedInvalidRequestValidationResponse,
-} from '#/mocks/errors';
+import { MockInvalidRequestResponse, MockInvalidRequestValidationResponse } from '#/mocks/errors';
 import { i18n } from '#/services/internationalization';
 
 // TODO: Set your error handling
@@ -33,6 +28,7 @@ const isErrorWithMessage = (error: unknown): error is { message: string } => {
     typeof error === 'object' &&
     error != null &&
     'message' in error &&
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     typeof (error as any).message === 'string'
   );
 };
@@ -44,22 +40,25 @@ export const isFetchBaseQueryError = (error: unknown): error is FetchBaseQueryEr
 type HttpError = Extract<FetchBaseQueryError, { status: number }>;
 
 const isHttpError = (error: unknown): error is HttpError => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return isFetchBaseQueryError(error) && typeof (error as any).status === 'number';
 };
 
-type InvalidRequestError = Omit<HttpError, 'data'> & { data: MockedInvalidRequestResponse };
+type InvalidRequestError = Omit<HttpError, 'data'> & { data: MockInvalidRequestResponse };
 
 const isInvalidRequestError = (error: unknown): error is InvalidRequestError => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return isHttpError(error) && typeof (error.data as any).code === 'number';
 };
 
 type InvalidValidationRequestError = Omit<HttpError, 'data'> & {
-  data: MockedInvalidRequestValidationResponse;
+  data: MockInvalidRequestValidationResponse;
 };
 
 export const isInvalidValidationRequestError = (
   error: unknown,
 ): error is InvalidValidationRequestError => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return isHttpError(error) && typeof (error.data as any).errors === 'object';
 };
 

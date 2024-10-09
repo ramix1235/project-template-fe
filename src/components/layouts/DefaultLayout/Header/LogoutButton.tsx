@@ -8,14 +8,10 @@ interface LogoutButtonProps extends ButtonProps, ElementProps<'button', keyof Bu
 const LogoutButton: React.FC<LogoutButtonProps> = (props) => {
   const { t } = useTranslation();
 
-  const { logout } = useAuth();
-
-  const handleLogoutClick = () => {
-    logout();
-  };
+  const { authLogout } = useAuth();
 
   return (
-    <Button variant="light" onClick={handleLogoutClick} {...props}>
+    <Button variant="light" onClick={authLogout} {...props}>
       {t('identity.logout')}
     </Button>
   );

@@ -49,7 +49,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === ErrorCodes.Unauthorized) {
+  if (result.error?.status === ErrorCodes.Unauthorized) {
     // checking whether the mutex is locked
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
@@ -71,7 +71,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
           extraOptions,
         );
 
-        if (refreshResult.data && typeof refreshResult.data === 'object') {
+        if (typeof refreshResult?.data === 'object') {
           const { token } = refreshResult.data as MockPostRefreshTokenApiResponse;
 
           api.dispatch(refreshAccess({ token }));

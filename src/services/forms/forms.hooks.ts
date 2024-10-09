@@ -20,7 +20,7 @@ export const useFormErrorHandler = <FormValues>(
   };
 
   useEffect(() => {
-    if (error && isInvalidValidationRequestError(error)) {
+    if (isInvalidValidationRequestError(error)) {
       // show first error for field from the errors list
       const mappedErrors = Object.entries(error.data.errors).reduce((all, [field, errors]) => {
         return { ...all, [field]: errors[0] };

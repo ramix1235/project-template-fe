@@ -4,7 +4,7 @@ import { API as api } from '#/services/api';
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-const mockedAllPermissions = ['user:create', 'user:read', 'user:update', 'user:delete'];
+const MOCK_ALL_PERMISSIONS = ['user:create', 'user:read', 'user:update', 'user:delete'];
 
 // Invalid request response
 const generateInvalidRequestResponse = (message: string) => {
@@ -83,7 +83,7 @@ const injectedMockApi = api.injectEndpoints({
           data: {
             isSuccess: true,
             token: `mockToken-${Date.now()}`,
-            permissions: mockedAllPermissions,
+            permissions: MOCK_ALL_PERMISSIONS,
           },
         };
       },
@@ -94,11 +94,13 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return {
-          data: {
-            isSuccess: true,
-          },
-        };
+        return generateInvalidRequestValidationResponse({
+          email: [
+            'Email: mock invalid request validation response error 1',
+            'Email: mock invalid request validation response error 2',
+          ],
+          password: ['Password: mock invalid request validation response error'],
+        });
       },
     }),
     mockPostChangeEmailRequest: build.mutation<
@@ -110,9 +112,11 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return generateInvalidRequestValidationResponse({
-          email: ['Mocked error - Invalid email', 'Mocked error - Incorrect email'],
-        });
+        return {
+          data: {
+            isSuccess: true,
+          },
+        };
       },
     }),
     mockPostResetPasswordRequest: build.mutation<
@@ -124,11 +128,7 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return {
-          data: {
-            isSuccess: true,
-          },
-        };
+        return generateInvalidRequestResponse('Mock invalid request response error');
       },
     }),
     mockPostChangeEmailConfirm: build.mutation<
@@ -188,7 +188,11 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return generateInvalidRequestResponse('Mocked error - Invalid password');
+        return {
+          data: {
+            isSuccess: true,
+          },
+        };
       },
     }),
     mockPostResetPassword: build.mutation<
