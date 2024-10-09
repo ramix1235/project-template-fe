@@ -4,7 +4,7 @@ import { Provider as StoreProvider } from 'react-redux';
 
 import { Navigation } from '#/services/navigation';
 import { PermissionsProvider } from '#/services/permissions';
-import { store } from '#/services/store';
+import { setupStore } from '#/services/store';
 import { theme, cssVariablesResolver } from '#/services/theme';
 
 // Connect internationalization files
@@ -26,6 +26,8 @@ import 'mantine-datatable/styles.layer.css';
 import '#/assets/styles/global.scss';
 
 const environments = import.meta.env;
+
+const store = setupStore();
 
 console.info('MODE: ', environments.MODE);
 console.info('API: ', environments.VITE_API_URL);

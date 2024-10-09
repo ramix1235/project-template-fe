@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { API } from '#/services/api';
@@ -10,18 +10,26 @@ const environments = import.meta.env;
 
 // You may want to show a generic toast notification for any async error: https://redux-toolkit.js.org/rtk-query/usage/error-handling#handling-errors-at-a-macro-level
 
-export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    [API.reducerPath]: API.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([API.middleware, globalErrorsHandler]),
-  devTools: environments.MODE === 'development',
+const rootReducer = combineReducers({
+  auth: authReducer,
+  [API.reducerPath]: API.reducer,
 });
 
-// Optional, but required for refetchOnFocus/refetchOnReconnect behaviors
-setupListeners(store.dispatch);
+export const setupStore = (preloadedState?: Partial<RootState>) => {
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat([API.middleware, globalErrorsHandler]),
+    preloadedState,
+    devTools: environments.MODE === 'development',
+  });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+  // Optional, but required for refetchOnFocus/refetchOnReconnect behaviors
+  setupListeners(store.dispatch);
+
+  return store;
+};
+
+export type AppStore = ReturnType<typeof setupStore>;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = AppStore['dispatch'];

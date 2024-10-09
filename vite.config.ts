@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { checker } from 'vite-plugin-checker';
@@ -51,5 +53,12 @@ export default defineConfig(({ mode }) => {
       drop: isDev ? undefined : ['console', 'debugger'],
     },
     envDir: 'env',
+    test: {
+      globals: true,
+      restoreMocks: true,
+      mockReset: true,
+      environment: 'jsdom',
+      setupFiles: ['src/tests/tests.setup.ts'],
+    },
   };
 });

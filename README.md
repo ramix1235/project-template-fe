@@ -1,4 +1,4 @@
-# Branch vite-ts
+# Branch vite-ts-tests
 
 ## Description
 
@@ -16,6 +16,7 @@ _Note: services still depend on the project. For absolute independence, the repo
 - Validations - schema-based validations for forms.
 - Permissions - access restriction for pages/components/logic.
 - Authorization - basic auth token-based flow.
+- Tests - environment and set of already written tests.
 
 ## Pages:
 - Identity:
@@ -49,6 +50,10 @@ _Note: services still depend on the project. For absolute independence, the repo
 
 - [mantine-for-figma](https://mantine.dev/getting-started/#mantine-for-figma) - community-driven projects that provide Figma components based on Mantine.
 
+## VS Code recommended extensions
+
+- [vitest.explorer](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) - manage tests both from the Testing view and directly within test files.
+
 ## Dependencies:
 
 - #### Development configuration:
@@ -73,6 +78,8 @@ _Note: services still depend on the project. For absolute independence, the repo
         - [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import) - lints import/export syntax, and prevents issues with misspelling of file paths and import names.
             - [eslint-import-resolver-typescript](https://github.com/import-js/eslint-import-resolver-typescript) - TS resolver to accurately resolve import paths and aliases based on tsconfig.
             - [eslint-import-resolver-alias](https://github.com/johvin/eslint-import-resolver-alias) - alias resolver for custom path in imports.
+        - [eslint-plugin-jest-dom](https://testing-library.com/docs/ecosystem-eslint-plugin-jest-dom) - ESLint plugin for Jest DOM.
+        - [eslint-plugin-testing-library](https://testing-library.com/docs/ecosystem-eslint-plugin-testing-library) - ESLint plugin for Testing Library.
     - [stylelint](https://stylelint.io/) - consistent and error-free CSS by analyzing stylesheets for issues and applying coding standards.
         - [stylelint-config-standard-scs](https://github.com/stylelint-scss/stylelint-config-standard-scss) - SCSS rules.
         - [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order) - sorts CSS properties the same way Recess and Bootstrap did.
@@ -113,6 +120,14 @@ _Note: services still depend on the project. For absolute independence, the repo
 - #### Authorization:
     - uses __@reduxjs/toolkit__ and __@casl/react__ dependencies.
     - [async-mutex](https://github.com/DirtyHairy/async-mutex) - prevent multiple calls to '/refresh' when multiple calls fail with 401 Unauthorized errors.
+
+- #### Tests:
+  - [vitest](https://vitest.dev) - Vite native test runner and framework.
+    - [jsdom](https://github.com/jsdom/jsdom) - browser-like environment instead of Node.js environment for tests.
+  - [@testing-library/dom](https://testing-library.com) - provides involve querying the DOM for nodes in a way that's similar to how the user finds elements on the page.
+    - [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro) - builds on top of DOM Testing Library by adding APIs for working with React components.
+    - [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom) - custom DOM element matchers.
+    - [@testing-library/user-event](https://testing-library.com/docs/user-event/intro) - simulates user interactions by dispatching the events that would happen if the interaction took place in a browser.
 
 - #### Miscellaneous:
     - esbuild-runner - workaround for __@rtk-query/codegen-openapi__. [Check issue](https://github.com/reduxjs/redux-toolkit/issues/1775).

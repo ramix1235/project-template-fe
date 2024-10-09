@@ -9,6 +9,8 @@
     "build:development": "tsc -b && vite build --mode development",
     "build:staging": "tsc -b && vite build --mode staging",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "csslint:fix": "stylelint \"**/*.{css,scss}\" --fix",
@@ -40,6 +42,10 @@
   },
   "devDependencies": {
     "@rtk-query/codegen-openapi": "^1.2.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^8.2.0",
@@ -50,11 +56,14 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "eslint-plugin-testing-library": "^6.3.0",
     "husky": "^9.1.4",
+    "jsdom": "^25.0.0",
     "lint-staged": "^15.2.9",
     "meow": "^9.0.0",
     "prettier": "^3.3.3",
@@ -67,7 +76,8 @@
     "vite-plugin-checker": "^0.7.2",
     "vite-plugin-qrcode": "^0.2.3",
     "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
   },
   "packageManager": "pnpm@9.7.1"
 }

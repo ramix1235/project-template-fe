@@ -8,7 +8,7 @@ import {
 import { Mutex } from 'async-mutex';
 
 import { MockPostRefreshTokenApiArg, MockPostRefreshTokenApiResponse } from '#/mocks/api';
-import { clearAuth, refreshAccess } from '#/services/auth';
+import { clearAuth, refreshAccess } from '#/services/auth/auth.slice';
 import { ErrorCodes } from '#/services/errors';
 import { RootState } from '#/services/store';
 

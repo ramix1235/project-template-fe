@@ -18,3 +18,6 @@ pnpm-debug.log*
 
 # Local files
 *.local
+
+# Tests output
+coverage
