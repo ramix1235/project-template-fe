@@ -1,3 +1,5 @@
+const path = require('path');
+
 // Optionally, make typescript-eslint rules more strict: https://typescript-eslint.io/getting-started/typed-linting
 
 module.exports = {
@@ -22,7 +24,7 @@ module.exports = {
     'import/resolver': {
       typescript: true,
       alias: [
-        ['', './public'], // Resolver for Vite when importing assets from public folder
+        ['', path.resolve(__dirname, 'app/public')], // Resolver for Vite when importing assets from public folder
       ],
     },
   },

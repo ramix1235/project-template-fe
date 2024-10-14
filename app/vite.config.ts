@@ -51,5 +51,9 @@ export default defineConfig(({ mode }) => {
       drop: isDev ? undefined : ['console', 'debugger'],
     },
     envDir: 'env',
+    build: {
+      outDir: '../dist/app',
+      emptyOutDir: true,
+    },
   };
 });
