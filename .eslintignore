@@ -3,3 +3,6 @@ dist
 
 # ESLint file
 .eslintrc.cjs
+
+# Codegen OpenAPI
+src/services/api/**/*.api.ts
