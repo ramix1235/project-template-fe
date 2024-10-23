@@ -48,7 +48,7 @@ Implements a minimal project structure with recommended development configuratio
             - [eslint-import-resolver-typescript](https://github.com/import-js/eslint-import-resolver-typescript) - TS resolver to accurately resolve import paths and aliases based on tsconfig.
             - [eslint-import-resolver-alias](https://github.com/johvin/eslint-import-resolver-alias) - alias resolver for custom path in imports.
     - [stylelint](https://stylelint.io/) - consistent and error-free CSS by analyzing stylesheets for issues and applying coding standards.
-        - [stylelint-config-standard-scs](https://github.com/stylelint-scss/stylelint-config-standard-scss) - SCSS rules.
+        - [stylelint-config-standard-scss](https://github.com/stylelint-scss/stylelint-config-standard-scss) - SCSS rules.
         - [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order) - sorts CSS properties the same way Recess and Bootstrap did.
     - [prettier](https://prettier.io) - consistent code style across the project.
     - [husky](https://github.com/typicode/husky) - runs scripts automatically before committing code to a git repository.
