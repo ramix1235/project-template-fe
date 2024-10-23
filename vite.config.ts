@@ -31,8 +31,7 @@ export default defineConfig(({ mode }) => {
             overlay: { initialIsOpen: false },
             typescript: true,
             eslint: {
-              lintCommand:
-                'eslint . --ext ts,tsx',
+              lintCommand: 'eslint . --ext ts,tsx',
             },
             stylelint: {
               lintCommand: 'stylelint "**/*.{css,scss}"',
