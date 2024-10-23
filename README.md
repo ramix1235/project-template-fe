@@ -1,14 +1,13 @@
 # Branch vite-ts-tests
 
 ## Description
-
-Implements a services-based project structure in which components use functionality isolated into services for better modularity. 
+  Implements a services-based project structure in which components use functionality isolated into services for better modularity. 
   
-_Note: services still depend on the project. For absolute independence, the repository should use [pnpm workspaces](https://pnpm.io/workspaces) or [Nx](https://nx.dev) and become a monorepository where services are packages with their own package.json, tsconfig.json, etc._
+  _Note: services still depend on the project. For absolute independence, the repository should use [pnpm workspaces](https://pnpm.io/workspaces) or [Nx](https://nx.dev) and become a monorepository where services are packages with their own package.json, tsconfig.json, etc._
 
 ## Features
 
-- Development configuration (part of vite-ts-min) - for quickly starting a project from scratch.
+- Development configuration - for quickly starting a project from scratch.
 - Design - set of components, set of hooks for state and UI management, set of icons, notifications management, forms management, theme management and theme select component.
 - Data management - store and cache management for authorization and API.
 - Navigation - routing for pages which are described below.
@@ -35,7 +34,6 @@ _Note: services still depend on the project. For absolute independence, the repo
   - Error Boundary - handles exceptions in component rendering.
 
 ## Getting Started
-
 1. Read general instructions in main branch.
 2. ``pnpm run dev`` - run the development server and http://localhost:4200 automatically opens in the browser.
 3. Check all TODO comments in the whole project to customize the template for yourself and remove stubs and mocks.
@@ -47,7 +45,6 @@ _Note: services still depend on the project. For absolute independence, the repo
 2. Check dist folder in the project root.
 
 ## Useful links
-
 - [mantine-for-figma](https://mantine.dev/getting-started/#mantine-for-figma) - community-driven projects that provide Figma components based on Mantine.
 
 ## VS Code recommended extensions
@@ -57,43 +54,15 @@ _Note: services still depend on the project. For absolute independence, the repo
 ## Dependencies:
 
 - #### Development configuration:
-    - [react](https://react.dev) - building fast, interactive UI using reusable components.
-        - [react-dom](https://www.npmjs.com/package/react-dom) - entry point to the DOM renderers for React.
-        - [@types/react](https://www.npmjs.com/package/@types/react) - TS types for React.
-        - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom) - TS types for React DOM.
-    - [typescript](https://www.typescriptlang.org) - static typing and other features to improve code quality and maintainability.
-    - [vite](https://vitejs.dev) - instant server start, lightning-fast hot module replacement (HMR), and optimized production build.
-        - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) - uses Babel for Fast Refresh, automatic JSX runtime, custom Babel plugins/presets.
-        - [vite-plugin-checker](https://vite-plugin-checker.netlify.app) - shows TS, ESLint, Stylelint errors in the worker thread.
-        - [vite-plugin-qrcode](https://github.com/svitejs/vite-plugin-qrcode) - fast access to the app on mobile devices by scanning a QR code.
-        - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) - transforms SVG files into React components.
-        - [vite-tsconfig-paths](https://github.com/aleclarson/vite-tsconfig-paths) - cleaner and more manageable import paths by automatically resolving TS path aliases.
-    - [eslint](https://eslint.org) - analyzes JS/TS code to identify and fix issues related to code quality, consistency, and potential errors.
-        - [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) - React rules.
-        - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) - React Hooks rules.
-        - [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) - accessibility rules for JSX elements, helping ensure that React application meet web accessibility standards.
-        - [eslint-plugin-react-refresh](https://github.com/ArnaudBarre/eslint-plugin-react-refresh) - validates that React components can safely be updated with Fast Refresh.
-        - [@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin) - TS rules.
-            - [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser) - allows ESLint to lint TS code.
-        - [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import) - lints import/export syntax, and prevents issues with misspelling of file paths and import names.
-            - [eslint-import-resolver-typescript](https://github.com/import-js/eslint-import-resolver-typescript) - TS resolver to accurately resolve import paths and aliases based on tsconfig.
-            - [eslint-import-resolver-alias](https://github.com/johvin/eslint-import-resolver-alias) - alias resolver for custom path in imports.
-        - [eslint-plugin-jest-dom](https://testing-library.com/docs/ecosystem-eslint-plugin-jest-dom) - ESLint plugin for Jest DOM.
-        - [eslint-plugin-testing-library](https://testing-library.com/docs/ecosystem-eslint-plugin-testing-library) - ESLint plugin for Testing Library.
-    - [stylelint](https://stylelint.io/) - consistent and error-free CSS by analyzing stylesheets for issues and applying coding standards.
-        - [stylelint-config-standard-scs](https://github.com/stylelint-scss/stylelint-config-standard-scss) - SCSS rules.
-        - [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order) - sorts CSS properties the same way Recess and Bootstrap did.
-    - [prettier](https://prettier.io) - consistent code style across the project.
-    - [husky](https://github.com/typicode/husky) - runs scripts automatically before committing code to a git repository.
-    - [lint-staged](https://github.com/lint-staged/lint-staged) - runs scripts on files that are staged in git.
+    - extends vite-ts-min branch...
 
 - #### Design:
+    - extends vite-ts-min branch...
     - [mantine/core](https://mantine.dev) - core components library that provides a rich set of customizable UI components for building responsive and accessible applications.
         - [mantine/hooks](https://mantine.dev) - hooks for state and UI management.
             - [mantine/forms](https://mantine.dev) - form management library.
             - [mantine/notifications](https://mantine.dev) - notifications system.
-            - [mantine-datatable](https://icflorescu.github.io/mantine-datatable) - lightweight, dependency-free component that brings datagrid-like functionality to data-rich user interface. It uses __clsx__ dependency.
-    - [sass](https://sass-lang.com) - CSS preprocessor that extends CSS with features like variables, nested rules, and mixins to enhance styling and maintainability.
+            - [mantine-datatable](https://icflorescu.github.io/mantine-datatable) - lightweight, dependency-free component that brings datagrid-like functionality to data-rich user interface.
     - [@tabler/icons-react](https://tabler.io/icons) - set of free, high-quality, and customizable icon designs optimized for use in applications.
     - [clsx](https://github.com/lukeed/clsx) - utility that making it easier to manage dynamic class names.
 
@@ -118,7 +87,6 @@ _Note: services still depend on the project. For absolute independence, the repo
     - [@casl/react](https://casl.js.org/v6/en/package/casl-react) - React resolver for CASL that allows defining and enforcing user permissions for various UI components and actions.
 
 - #### Authorization:
-    - uses __@reduxjs/toolkit__ and __@casl/react__ dependencies.
     - [async-mutex](https://github.com/DirtyHairy/async-mutex) - prevent multiple calls to '/refresh' when multiple calls fail with 401 Unauthorized errors.
 
 - #### Tests:
@@ -130,5 +98,5 @@ _Note: services still depend on the project. For absolute independence, the repo
     - [@testing-library/user-event](https://testing-library.com/docs/user-event/intro) - simulates user interactions by dispatching the events that would happen if the interaction took place in a browser.
 
 - #### Miscellaneous:
+    - extends vite-ts-min branch...
     - esbuild-runner - workaround for __@rtk-query/codegen-openapi__. [Check issue](https://github.com/reduxjs/redux-toolkit/issues/1775).
-    - meow - workaround for __vite-plugin-checker stylelint__ integration. [Check warning section](https://vite-plugin-checker.netlify.app/checkers/stylelint.html#installation).

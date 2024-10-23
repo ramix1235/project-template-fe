@@ -1,29 +1,22 @@
 import { Button, ButtonProps, ElementProps } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { To } from 'react-router-dom';
 
-import { MAIN_ROUTES, useGoBack } from '#/services/navigation';
+import { useGoBack } from '#/services/navigation';
 
-interface BackButtonProps extends ButtonProps, ElementProps<'button', keyof ButtonProps> {
-  fallbackTo?: To;
-}
+export interface BackButtonProps extends ButtonProps, ElementProps<'button', keyof ButtonProps> {}
 
-const BackButton: React.FC<BackButtonProps> = ({
-  fallbackTo = MAIN_ROUTES.HOME,
-  onClick,
-  ...props
-}) => {
+const BackButton: React.FC<BackButtonProps> = ({ onClick, ...props }) => {
   const { t } = useTranslation();
-  const { goBack } = useGoBack();
+  const { canGoBack, goBack } = useGoBack();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    goBack(fallbackTo);
+    goBack();
 
     onClick?.(e);
   };
 
   return (
-    <Button variant="light" onClick={handleClick} {...props}>
+    <Button variant="light" disabled={!canGoBack} onClick={handleClick} {...props}>
       {t('common.back')}
     </Button>
   );

@@ -47,13 +47,15 @@ const router = createBrowserRouter([
       {
         path: MAIN_ROUTES.SETTINGS,
         handle: {
-          centered: true,
-          title: (t: TFunction) => t('settings'),
           crumb: (t: TFunction) => t('settings'),
         },
         children: [
           {
             index: true,
+            handle: {
+              centered: true,
+              title: (t: TFunction) => t('settings'),
+            },
             async lazy() {
               const { Settings } = await import('#/pages/user');
 

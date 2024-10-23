@@ -8,8 +8,6 @@ import { globalErrorsHandler } from './store.middlewares';
 
 const environments = import.meta.env;
 
-// You may want to show a generic toast notification for any async error: https://redux-toolkit.js.org/rtk-query/usage/error-handling#handling-errors-at-a-macro-level
-
 const rootReducer = combineReducers({
   auth: authReducer,
   [API.reducerPath]: API.reducer,

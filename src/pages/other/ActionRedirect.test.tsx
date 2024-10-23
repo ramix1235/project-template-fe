@@ -20,7 +20,8 @@ describe('component: ActionRedirect', () => {
     vi.spyOn(auth, 'useAuth').mockReturnValue({
       authAccount: MOCK_GUEST_AUTH_ACCOUNT,
       isGuest: true,
-      logout: vi.fn(),
+      authLogin: vi.fn(),
+      authLogout: vi.fn(),
     });
   });
 

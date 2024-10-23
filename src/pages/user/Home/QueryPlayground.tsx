@@ -75,7 +75,7 @@ const QueryPlayground: React.FC<StackProps> = (props) => {
 
       <Group>
         <Button loading={isAddPetLoading} onClick={handleAddPetClick}>
-          {t('home.table.actions.add')}
+          {t('common.add')}
         </Button>
       </Group>
 

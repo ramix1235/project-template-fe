@@ -1,17 +1,22 @@
 import { useAppDispatch, useAppSelector } from '#/services/store';
 
+import { AuthAccount } from './auth.account';
 import { selectAuthAccount, selectIsGuest } from './auth.selectors';
-import { clearAuth } from './auth.slice';
+import { clearAuth, setAuth } from './auth.slice';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
 
-  const authAccount = useAppSelector(selectAuthAccount);
+  const account = useAppSelector(selectAuthAccount);
   const isGuest = useAppSelector(selectIsGuest);
 
-  const logout = () => {
+  const authLogin = (authAccount: AuthAccount) => {
+    return dispatch(setAuth({ authAccount }));
+  };
+
+  const authLogout = () => {
     return dispatch(clearAuth());
   };
 
-  return { authAccount, isGuest, logout };
+  return { authAccount: account, isGuest, authLogin, authLogout };
 };

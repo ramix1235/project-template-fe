@@ -6,10 +6,9 @@ import { useLocation } from 'react-router-dom';
 import { AnchorLink } from '#/components/base';
 import { SubmitButton } from '#/components/forms';
 import { MockPostLoginApiArg, useMockPostLoginMutation } from '#/mocks/api';
-import { AuthAccount, setAuth } from '#/services/auth';
+import { AuthAccount, useAuth } from '#/services/auth';
 import { getDefaultFormConfig, useFormErrorHandler } from '#/services/forms';
 import { MAIN_ROUTES } from '#/services/navigation';
-import { useAppDispatch } from '#/services/store';
 
 import { getSchema, LoginFormValues } from './LoginForm.schema';
 
@@ -27,7 +26,8 @@ const LoginForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
 
   const { t } = useTranslation();
   const location = useLocation();
-  const dispatch = useAppDispatch();
+
+  const { authLogin } = useAuth();
 
   const state = location.state as LocationState | null;
   const email = state?.email;
@@ -56,7 +56,7 @@ const LoginForm: React.FC<React.ComponentPropsWithoutRef<'form'>> = (props) => {
       token: result.token,
     };
 
-    dispatch(setAuth({ account: authAccount }));
+    authLogin(authAccount);
   };
 
   return (

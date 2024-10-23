@@ -3,8 +3,8 @@ import { userEvent } from '@testing-library/user-event';
 import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router-dom';
 
 import * as mockApi from '#/mocks/api';
+import * as auth from '#/services/auth';
 import * as forms from '#/services/forms';
-import * as store from '#/services/store';
 import {
   spyMutationHook,
   attachMantine,
@@ -55,7 +55,12 @@ describe('component: LoginForm', () => {
       token: MOCK_AUTH_ACCOUNT.token,
       permissions: MOCK_AUTH_ACCOUNT.permissions,
     });
-    vi.spyOn(store, 'useAppDispatch').mockReturnValue(vi.fn());
+    vi.spyOn(auth, 'useAuth').mockReturnValue({
+      authAccount: MOCK_AUTH_ACCOUNT,
+      isGuest: false,
+      authLogin: vi.fn(),
+      authLogout: vi.fn(),
+    });
     vi.spyOn(forms, 'useFormErrorHandler').mockReturnValue({
       firstErrorFocus: vi.fn(),
     });

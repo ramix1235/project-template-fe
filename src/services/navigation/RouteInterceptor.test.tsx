@@ -103,7 +103,7 @@ describe('component: RouteInterceptor', () => {
     const publicPageContent = screen.getByText(/public/i);
     expect(publicPageContent).toBeInTheDocument();
 
-    act(() => store.dispatch(setAuth({ account: MOCK_AUTH_ACCOUNT })));
+    act(() => store.dispatch(setAuth({ authAccount: MOCK_AUTH_ACCOUNT })));
 
     const privatePageContent = screen.getByText(/private/i);
 

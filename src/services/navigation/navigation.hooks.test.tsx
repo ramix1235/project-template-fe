@@ -1,5 +1,5 @@
 import { act, renderHook, screen } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router-dom';
 
 import { useGoBack } from './navigation.hooks';
 
@@ -30,68 +30,35 @@ describe('service: navigation hooks', () => {
       return <RouterProvider router={router} />;
     };
 
+    // Push history state since MemoryRouter doesn't interact with window.history
+    const originURL = window.location.href;
+
+    window.history.pushState({ idx: 1 }, '', '/first-page');
+    window.history.pushState({ idx: 2 }, '', '/second-page');
+
     const { result: useGoBackResult } = renderHook(() => useGoBack(), { wrapper: Wrapper });
 
     const secondPageContent = screen.getByText(/second/i);
 
     expect(secondPageContent).toBeInTheDocument();
 
-    // Mock window.history.length = 2 to avoid fallback redirection since MemoryRouter doesn't interact with window.history
-    const originHistoryLength = window.history.length;
-    Object.defineProperty(window.history, 'length', {
-      configurable: true,
-      value: 2,
-    });
+    expect(useGoBackResult.current.canGoBack).toBe(true);
 
     act(() => useGoBackResult.current.goBack());
 
-    // Restore window.history.length
-    Object.defineProperty(window.history, 'length', {
-      configurable: true,
-      value: originHistoryLength,
-    });
+    // Restore history state
+    window.history.replaceState(null, '', originURL);
 
     const firstPageContent = screen.getByText(/first/i);
 
     expect(firstPageContent).toBeInTheDocument();
   });
 
-  it('navigates to the fallback page', () => {
-    const Wrapper = ({ children }: React.PropsWithChildren) => {
-      const router = createMemoryRouter(
-        [
-          {
-            path: '/current-page',
-            element: (
-              <div>
-                <p>Current page</p>
-                {children}
-              </div>
-            ),
-          },
-          {
-            path: '/fallback-page',
-            element: <p>Fallback page</p>,
-          },
-        ],
-        {
-          initialEntries: ['/current-page'],
-        },
-      );
+  it('cannot navigates to the previous page', () => {
+    const { result: useGoBackResult } = renderHook(() => useGoBack(), {
+      wrapper: ({ children }) => <MemoryRouter>{children}</MemoryRouter>,
+    });
 
-      return <RouterProvider router={router} />;
-    };
-
-    const { result: useGoBackResult } = renderHook(() => useGoBack(), { wrapper: Wrapper });
-
-    const currentPageContent = screen.getByText(/current/i);
-
-    expect(currentPageContent).toBeInTheDocument();
-
-    act(() => useGoBackResult.current.goBack('/fallback-page'));
-
-    const fallbackPageContent = screen.getByText(/fallback/i);
-
-    expect(fallbackPageContent).toBeInTheDocument();
+    expect(useGoBackResult.current.canGoBack).toBe(false);
   });
 });

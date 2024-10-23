@@ -3,7 +3,7 @@ import { Notifications } from '@mantine/notifications';
 import { screen } from '@testing-library/react';
 import { Provider as StoreProvider } from 'react-redux';
 
-import { mockedAllPermissions } from '#/mocks/api';
+import { MOCK_ALL_PERMISSIONS } from '#/mocks/api';
 import { AuthAccount } from '#/services/auth';
 import { PermissionsProvider } from '#/services/permissions';
 import { AppStore, RootState, setupStore } from '#/services/store';
@@ -13,7 +13,7 @@ export const MOCK_EMAIL = 'mock@mail.com';
 export const MOCK_PASSWORD = 'Qwerty1!';
 
 export const MOCK_AUTH_ACCOUNT: AuthAccount = {
-  permissions: mockedAllPermissions,
+  permissions: MOCK_ALL_PERMISSIONS,
   token: `mockToken-${Date.now()}`,
 };
 export const MOCK_GUEST_AUTH_ACCOUNT: AuthAccount = {

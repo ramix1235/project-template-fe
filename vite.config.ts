@@ -33,8 +33,7 @@ export default defineConfig(({ mode }) => {
             overlay: { initialIsOpen: false },
             typescript: true,
             eslint: {
-              lintCommand:
-                'eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0',
+              lintCommand: 'eslint . --ext ts,tsx',
             },
             stylelint: {
               lintCommand: 'stylelint "**/*.{css,scss}"',

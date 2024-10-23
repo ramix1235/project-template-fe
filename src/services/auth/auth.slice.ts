@@ -14,8 +14,8 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuth: (state, action: PayloadAction<{ account: AuthAccount }>) => {
-      setAuthAccount(action.payload.account);
+    setAuth: (state, action: PayloadAction<{ authAccount: AuthAccount }>) => {
+      setAuthAccount(action.payload.authAccount);
 
       state.authAccount = getAuthAccount();
     },

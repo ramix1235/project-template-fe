@@ -50,10 +50,11 @@ const Navbar: React.FC<NavbarProps> = ({
           <Stack p="md">
             {items.map(({ label, to, permissions }) => {
               const element = <ButtonNavLink to={to}>{label}</ButtonNavLink>;
-              const subject = permissions[0];
-              const action = permissions[1];
 
               if (permissions?.length > 0) {
+                const subject = permissions[0];
+                const action = permissions[1];
+
                 return (
                   <Can key={to} I={action} a={subject}>
                     {element}

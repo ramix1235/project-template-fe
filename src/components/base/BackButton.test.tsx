@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 
 import * as navigation from '#/services/navigation';
 import { attachMantine } from '#/tests';
@@ -7,12 +6,13 @@ import { attachMantine } from '#/tests';
 import BackButton from './BackButton';
 
 describe('component: BackButton', () => {
-  it('initiates a redirect to the default fallback path on click', async () => {
+  it('enabled when can go back', async () => {
     const { mantineWrapper } = attachMantine();
 
     const mockGoBack = vi.fn();
 
     vi.spyOn(navigation, 'useGoBack').mockReturnValue({
+      canGoBack: true,
       goBack: mockGoBack,
     });
 
@@ -22,28 +22,25 @@ describe('component: BackButton', () => {
 
     const backButton = screen.getByRole('button');
 
-    await userEvent.click(backButton);
-
-    expect(mockGoBack).toHaveBeenCalledWith(navigation.MAIN_ROUTES.HOME);
+    expect(backButton).toBeEnabled();
   });
 
-  it('initiates a redirect to the specified fallback path on click', async () => {
+  it('disabled when cannot go back', async () => {
     const { mantineWrapper } = attachMantine();
 
     const mockGoBack = vi.fn();
 
     vi.spyOn(navigation, 'useGoBack').mockReturnValue({
+      canGoBack: false,
       goBack: mockGoBack,
     });
 
-    render(<BackButton fallbackTo="/fallback-page" />, {
+    render(<BackButton />, {
       wrapper: ({ children }) => mantineWrapper(children),
     });
 
     const backButton = screen.getByRole('button');
 
-    await userEvent.click(backButton);
-
-    expect(mockGoBack).toHaveBeenCalledWith('/fallback-page');
+    expect(backButton).toBeDisabled();
   });
 });

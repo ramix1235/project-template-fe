@@ -4,7 +4,7 @@ import { API as api } from '#/services/api';
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-export const mockedAllPermissions = ['user:create', 'user:read', 'user:update', 'user:delete'];
+export const MOCK_ALL_PERMISSIONS = ['user:create', 'user:read', 'user:update', 'user:delete'];
 
 // Invalid request response
 export const generateInvalidRequestResponse = (message: string) => {
@@ -83,7 +83,7 @@ const injectedMockApi = api.injectEndpoints({
           data: {
             isSuccess: true,
             token: `mockToken-${Date.now()}`,
-            permissions: mockedAllPermissions,
+            permissions: MOCK_ALL_PERMISSIONS,
           },
         };
       },
@@ -96,9 +96,10 @@ const injectedMockApi = api.injectEndpoints({
 
         return generateInvalidRequestValidationResponse({
           email: [
-            'Email: mocked invalid request validation response error 1',
-            'Email: mocked invalid request validation response error 2',
+            'Email: mock invalid request validation response error 1',
+            'Email: mock invalid request validation response error 2',
           ],
+          password: ['Password: mock invalid request validation response error'],
         });
       },
     }),
@@ -127,7 +128,7 @@ const injectedMockApi = api.injectEndpoints({
 
         await sleep();
 
-        return generateInvalidRequestResponse('Mocked invalid request response error');
+        return generateInvalidRequestResponse('Mock invalid request response error');
       },
     }),
     mockPostChangeEmailConfirm: build.mutation<

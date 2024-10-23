@@ -75,7 +75,9 @@ describe('component: Navbar', () => {
     expect(settingsButtonNavLink).toBeInTheDocument();
 
     act(() =>
-      store.dispatch(setAuth({ account: { ...MOCK_AUTH_ACCOUNT, permissions: ['user:useless'] } })),
+      store.dispatch(
+        setAuth({ authAccount: { ...MOCK_AUTH_ACCOUNT, permissions: ['user:useless'] } }),
+      ),
     );
 
     expect(homeButtonNavLink).not.toBeInTheDocument();

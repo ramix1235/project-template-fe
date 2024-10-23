@@ -15,7 +15,8 @@ describe('component: LogoutButton', () => {
     vi.spyOn(auth, 'useAuth').mockReturnValue({
       authAccount: MOCK_AUTH_ACCOUNT,
       isGuest: false,
-      logout: mockLogout,
+      authLogin: vi.fn(),
+      authLogout: mockLogout,
     });
 
     render(<LogoutButton />, { wrapper: ({ children }) => mantineWrapper(children) });

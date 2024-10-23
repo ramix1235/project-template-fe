@@ -20,7 +20,7 @@ describe('service: auth slice', () => {
       authReducer(
         previousState,
         setAuth({
-          account: MOCK_AUTH_ACCOUNT,
+          authAccount: MOCK_AUTH_ACCOUNT,
         }),
       ),
     ).toEqual({
