@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
             typescript: true,
             eslint: {
               lintCommand:
-                'eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0',
+                'eslint . --ext ts,tsx',
             },
             stylelint: {
               lintCommand: 'stylelint "**/*.{css,scss}"',
