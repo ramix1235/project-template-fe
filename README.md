@@ -8,7 +8,8 @@ The template provides a set of settings and features that are usually required i
 
 - main - overview of the repository.
 - vite-ts-min - implements a minimal project structure with recommended development configuration.
-- vite-ts - implements a services-based project structure in which components use functionality isolated into services for better modularity.
+- vite-ts - extends vite-ts-min branch with a services-based project structure in which components use functionality isolated into services for better modularity.
+- vite-ts-tests - extends vite-ts branch with a testing environment and set of already written tests.
 
 _Note: detailed overview of each branch can be found in their own readme._
 
