@@ -30,11 +30,12 @@ describe('service: navigation hooks', () => {
       return <RouterProvider router={router} />;
     };
 
-    // Push history state since MemoryRouter doesn't interact with window.history
-    const originURL = window.location.href;
-
-    window.history.pushState({ idx: 1 }, '', '/first-page');
-    window.history.pushState({ idx: 2 }, '', '/second-page');
+    // Mock window.history.length = 2 to avoid fallback redirection since MemoryRouter doesn't interact with window.history
+    const originHistoryLength = window.history.length;
+    Object.defineProperty(window.history, 'length', {
+      configurable: true,
+      value: 2,
+    });
 
     const { result: useGoBackResult } = renderHook(() => useGoBack(), { wrapper: Wrapper });
 
@@ -46,12 +47,15 @@ describe('service: navigation hooks', () => {
 
     act(() => useGoBackResult.current.goBack());
 
-    // Restore history state
-    window.history.replaceState(null, '', originURL);
-
     const firstPageContent = screen.getByText(/first/i);
 
     expect(firstPageContent).toBeInTheDocument();
+
+    // Restore window.history.length
+    Object.defineProperty(window.history, 'length', {
+      configurable: true,
+      value: originHistoryLength,
+    });
   });
 
   it('cannot navigates to the previous page', () => {
